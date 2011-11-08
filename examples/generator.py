@@ -6,11 +6,15 @@ import time
 
 def defaultActivityHook(startTime, attrs):
     t = startTime
-    delta1 = random.randint(1, 30*60)
-    delta2 = random.randint(delta1+1, 59*60)
+    delta1 = random.randint(1, 15*60)
+    delta2 = random.randint(delta1+1, 30*60)
+    delta3 = random.randint(delta2+1, 45*60)
+    delta4 = random.randint(delta3+1, 59*60)
     t0 = t+delta1
     t1 = t+delta2
-    return t0, t1
+    t2 = t+delta3
+    t3 = t+delta4
+    return t0, t1, t2, t3
     
 def defaultChoiceHook(l, attr):
     x = random.randint(0, len(l)-1)
@@ -48,30 +52,27 @@ class Entry:
      <attribute key="%s" value="%s" type="%s"/>
     """ % (key, valueRepr, typeRepr)
 
+    # create - assign - start - complete
     def gen(self, t, attrs):
-        t0, t1 = self.hook(t, attrs)
-        tf0 = time.strftime("%Y-%m-%dT%H:%M:%S.000+01:00", time.gmtime(t0))
-        tf1 = time.strftime("%Y-%m-%dT%H:%M:%S.000+01:00", time.gmtime(t1))
+        times = self.hook(t, attrs)
+        sformat = "%Y-%m-%dT%H:%M:%S.000+01:00"
+        formattimes = [time.strftime(sformat, time.gmtime(t)) for t in times]
         attr_str = ""
         for attr in attrs.keys():
             attr_str += self.formatAttr(attr, attrs[attr])
-        res = """
-        <event>
-          %s
-          <string key="org:resource" value="Guancio"/>
-          <string key="lifecycle:transition" value="start"/>
-          <string key="concept:name" value="%s"/>
-          <date key="time:timestamp" value="%s"/>
-          </event>
-        <event>
-          <string key="org:resource" value="Guancio"/>
-          <string key="lifecycle:transition" value="complete"/>
-          <string key="concept:name" value="%s"/>
-          <date key="time:timestamp" value="%s"/>
-        </event>
-        """ % (attr_str, self.name, tf0, self.name, tf1)
+        actions = ["create", "assign", "start", "complete"]
+        res = ""
+        for (t,a) in zip(formattimes, actions):
+            res += """ 
+            <event>
+              %s
+              <string key="org:resource" value="Guancio"/>
+              <string key="lifecycle:transition" value="%s"/>
+              <string key="concept:name" value="%s"/>
+              <date key="time:timestamp" value="%s"/>
+              </event>""" % (attr_str, self.name, a, t)
 
-        return (res, t1)
+        return (res, times[-1])
 
 class Recursion:
     def __init__(self, e):
