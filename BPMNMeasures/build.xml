@@ -6,6 +6,7 @@
 		<property name="doc" location="doc" />
 		<property name="lib" location="lib" />
 		<property name="dist" location="dist" />
+		<property name="xslt" location="xslt" />
 		<property name="release" location="latestrelease" />
 		<property name="version" value="6.1.${env.BUILD_NUMBER}" />
 		<property name="project" value="BPMNMeasures" />
@@ -35,7 +36,12 @@
 					<!-- Check for unsafe operations -->
 					<compilerarg value="-Xlint:unchecked" />
 				</javac>
+				<mkdir dir="${build}/xslt"/>
+				<copy todir="${build}/xslt">
+      				<fileset dir="${xslt}"/>
+			        </copy>
 			</sequential>
+			
 		</macrodef>
 
 		<!-- Jar macro

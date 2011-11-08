@@ -56,8 +56,10 @@ public class BPMN20ImportPlugin extends XpdlImportBpmn {
 
 
 			System.setProperty("javax.xml.transform.TransformerFactory", "net.sf.saxon.TransformerFactoryImpl");
-
-			XSLTransformer transformer =  new XSLTransformer("xslt/bpmnToXpdl2.xslt");
+			
+			InputStream path = getClass().getResourceAsStream("bpmnToXpdl2.xslt");
+			//String path ="xslt/bpmnToXpdl2.xslt";
+			XSLTransformer transformer =  new XSLTransformer(path);
 
 			SAXBuilder parser = new SAXBuilder();
 			Document doc = parser.build(input);

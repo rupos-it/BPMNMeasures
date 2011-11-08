@@ -1,0 +1,2578 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!-- This file has been generated with the OpenXES library. It conforms -->
+<!-- to the XML serialization of the XES standard for log storage and -->
+<!-- management. -->
+<!-- XES standard version: 1.0 -->
+<!-- OpenXES library version: 1.0RC7 -->
+<!-- OpenXES is available from http://www.openxes.org/ -->
+<log xes.version="1.0" xes.features="nested-attributes" openxes.version="1.0RC7" xmlns="http://www.xes-standard.org/">
+	<extension name="Lifecycle" prefix="lifecycle" uri="http://www.xes-standard.org/lifecycle.xesext"/>
+	<extension name="Organizational" prefix="org" uri="http://www.xes-standard.org/org.xesext"/>
+	<extension name="Time" prefix="time" uri="http://www.xes-standard.org/time.xesext"/>
+	<extension name="Concept" prefix="concept" uri="http://www.xes-standard.org/concept.xesext"/>
+	<extension name="Semantic" prefix="semantic" uri="http://www.xes-standard.org/semantic.xesext"/>
+	<global scope="trace">
+		<string key="concept:name" value="__INVALID__"/>
+	</global>
+	<global scope="event">
+		<string key="concept:name" value="__INVALID__"/>
+		<string key="lifecycle:transition" value="complete"/>
+	</global>
+	<classifier name="MXML Legacy Classifier" keys="concept:name lifecycle:transition"/>
+	<classifier name="Event Name" keys="concept:name"/>
+	<classifier name="Resource" keys="org:resource"/>
+	<string key="source" value="Example One from Guancio"/>
+	<string key="concept:name" value="Paper"/>
+	<string key="lifecycle:model" value="standard"/>
+	<string key="description" value="Paper Submission"/>
+	<trace>
+		<string key="concept:name" value="0"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-01T17:14:56.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-01T17:31:19.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-01T18:24:33.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T18:25:27.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T18:35:21.000+02:00"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-01T18:37:10.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-01T18:42:41.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="1"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T19:24:21.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-01T19:24:45.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-01T19:50:35.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-01T19:53:02.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-01T20:13:29.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-01T20:40:57.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="2"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-01T17:14:56.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T17:15:27.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-01T17:31:19.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-01T17:45:40.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-01T18:05:21.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-01T18:42:41.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="3"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T18:04:33.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-01T18:09:09.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-01T18:22:25.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-01T18:37:10.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-01T19:25:08.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-01T19:31:41.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="4"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T19:24:21.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T19:53:02.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T20:13:29.000+02:00"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T20:40:57.000+02:00"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="5"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-01T20:07:07.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T20:18:17.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-01T20:25:14.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-01T20:34:59.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-01T21:15:00.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-01T21:47:31.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="7"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-01T21:59:54.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T22:04:58.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T22:22:46.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-01T22:29:10.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-01T23:03:54.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-01T23:46:08.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="8"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T22:59:26.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-01T23:03:20.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T00:01:49.000+02:00"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T00:10:03.000+02:00"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="9"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T00:17:08.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-02T00:19:34.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T00:38:38.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-02T00:51:22.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T01:09:44.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T01:53:23.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-02T02:13:21.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-02T02:17:47.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T02:25:54.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T02:53:11.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T02:59:45.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T03:25:46.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="15"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T06:13:02.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T06:13:57.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T06:14:32.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-02T06:30:53.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T07:07:34.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T07:09:46.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="16"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T07:13:21.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-02T07:16:31.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-02T07:23:10.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T07:37:27.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T08:17:08.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T08:35:32.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T08:57:27.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T09:00:32.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T09:46:55.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-02T09:49:06.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T10:02:45.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T10:09:24.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="20"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T11:10:17.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-02T11:12:42.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-02T11:28:50.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T11:33:38.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T12:17:35.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T12:40:16.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="21"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T12:09:08.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-02T12:12:20.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T12:19:11.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-02T12:24:22.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T13:14:06.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T13:26:02.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="22"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T13:07:17.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T13:16:10.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T13:27:26.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T13:38:52.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T14:15:02.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T14:31:14.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T14:59:09.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T15:00:53.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-02T15:11:53.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-02T15:49:19.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T16:12:11.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T16:30:20.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="26"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T17:02:20.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T17:19:04.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T17:37:56.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T17:41:20.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T17:58:00.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T18:35:54.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T19:13:40.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T19:25:53.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T19:27:11.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T19:49:15.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T20:02:33.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T20:47:59.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="28"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T19:05:50.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-02T19:17:38.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-02T19:24:04.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T19:42:07.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T20:18:00.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T20:27:11.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="30"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-02T21:01:54.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-02T21:20:09.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-02T21:33:15.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-02T21:43:38.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T22:18:15.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-02T22:51:09.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="36"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T03:18:30.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T03:22:01.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T03:41:11.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T03:41:26.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T04:02:27.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T04:20:14.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="39"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T06:04:46.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T06:11:51.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T06:14:55.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-03T06:41:23.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T07:15:30.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T07:31:12.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T08:04:29.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-03T08:05:19.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-03T08:19:16.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T08:50:51.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T09:03:29.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T09:39:38.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="40"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T07:11:20.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T07:15:34.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T07:25:20.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-03T07:32:09.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T08:13:42.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T08:28:47.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="41"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T08:01:31.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T08:04:31.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-03T08:14:25.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-03T08:45:02.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T09:06:37.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T09:28:09.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T10:09:46.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T10:21:10.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T10:24:09.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T10:40:55.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T11:03:55.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T11:22:39.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="44"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-03T11:07:45.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T11:12:41.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T11:15:06.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-03T11:16:21.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T12:18:49.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T12:53:09.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-03T13:11:51.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T13:17:10.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-03T13:26:21.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T13:32:29.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T14:05:37.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T14:10:26.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="45"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T12:07:51.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T12:08:57.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T12:19:20.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-03T12:31:25.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T13:03:12.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T13:55:12.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="46"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-03T13:06:47.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T13:08:19.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-03T13:08:23.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T13:50:43.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T14:23:25.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T14:49:06.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="50"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T17:13:02.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-03T17:22:44.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T17:31:11.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-03T17:52:40.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T18:18:01.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T18:47:56.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="51"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T18:02:49.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T18:10:02.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T18:19:16.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T18:31:40.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T19:18:22.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T19:23:49.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T20:04:41.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T20:12:29.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T20:23:03.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T20:46:00.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T21:15:26.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T21:20:18.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="52"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T19:20:44.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T19:24:58.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T19:35:48.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-03T19:43:45.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T20:16:40.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T20:23:35.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="55"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T21:57:21.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-03T22:16:40.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-03T22:18:14.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-03T22:49:43.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T23:24:37.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-03T23:34:32.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="57"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T00:21:37.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T00:22:49.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T00:24:22.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-04T00:45:13.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T00:56:57.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T01:38:38.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="58"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T01:00:05.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-04T01:03:56.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-04T01:20:05.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T01:22:07.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T02:10:30.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T02:41:25.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T02:59:14.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T03:25:14.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T03:39:36.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T03:41:33.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T04:25:32.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T04:55:15.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="61"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-04T03:56:55.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-04T04:15:27.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T04:19:36.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T04:43:42.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T05:03:14.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T05:53:43.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T06:01:15.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T06:23:06.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T06:25:07.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T06:55:04.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T07:02:38.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T07:51:27.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="67"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T10:00:44.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T10:06:40.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T10:24:30.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T10:33:59.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T10:59:50.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T11:48:50.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T11:56:39.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T12:06:30.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T12:23:31.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T12:31:03.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T13:21:57.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T13:48:40.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="74"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-04T17:16:38.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T17:18:28.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T17:35:44.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-04T17:50:57.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T18:17:39.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T18:52:20.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="75"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T18:20:57.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T18:24:10.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T18:26:22.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T18:45:57.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T19:03:42.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T19:23:03.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T19:57:28.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T20:01:23.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-04T20:05:58.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-04T20:38:14.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T21:14:04.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T21:47:03.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="76"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T19:11:30.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T19:12:42.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T19:27:40.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-04T19:37:58.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T19:58:05.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-04T19:58:30.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="80"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T22:59:29.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T23:10:09.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T23:21:54.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-04T23:35:27.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T00:00:31.000+02:00"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T00:45:30.000+02:00"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="81"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-05T00:00:12.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T00:25:14.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T00:25:37.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-05T00:45:13.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T01:26:30.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T01:33:33.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T02:03:42.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T02:16:44.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T02:33:50.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-05T02:39:36.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T02:59:55.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T03:09:31.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="82"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T01:15:56.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-05T01:16:40.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-05T01:21:13.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T01:30:01.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T02:07:28.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T02:08:53.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="85"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T04:14:42.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T04:23:26.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T04:33:13.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T04:34:16.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T05:00:59.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T05:08:24.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="86"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T05:07:47.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T05:17:42.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T05:29:18.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-05T05:50:44.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T06:24:13.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T06:38:32.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T07:00:40.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T07:08:15.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T07:10:12.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T07:28:28.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T08:10:43.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T08:18:03.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="87"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T06:13:47.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T06:15:24.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T06:16:57.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T06:18:28.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T07:09:05.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T07:12:52.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T08:09:27.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-05T08:13:08.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T08:13:19.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-05T08:37:12.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T09:20:22.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T09:24:13.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="88"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T07:08:58.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T07:16:35.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T07:18:27.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T07:45:35.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T08:25:48.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T08:28:58.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="92"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T11:12:34.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T11:19:36.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T11:33:44.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T11:40:12.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T12:14:45.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T12:19:15.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-05T13:05:40.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T13:25:41.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-05T13:44:11.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T13:45:26.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T14:04:08.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T14:55:11.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="94"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T13:07:30.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T13:14:21.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T13:26:53.000+02:00"/>
+			<string key="concept:name" value="Immigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T13:48:06.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T14:16:34.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T14:34:15.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="95"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T14:19:39.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T14:21:24.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T14:21:35.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-05T14:49:45.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T15:08:34.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T15:54:29.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T16:07:24.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T16:11:35.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T16:24:37.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T16:30:24.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T17:25:08.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T17:50:29.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="96"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T15:03:26.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-05T15:19:19.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T15:21:57.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Emigration"/>
+			<date key="time:timestamp" value="2011-06-05T15:33:08.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T16:10:54.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T16:29:44.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="98"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T17:23:07.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T17:25:02.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T17:41:03.000+02:00"/>
+			<string key="concept:name" value="Emigration"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="DataCollection"/>
+			<date key="time:timestamp" value="2011-06-05T17:48:29.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T18:24:24.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T18:28:40.000+02:00"/>
+		</event>
+	</trace>
+	<trace>
+		<string key="concept:name" value="99"/>
+		<string key="description" value="PaperOne"/>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T17:57:59.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T18:14:36.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-05T18:23:40.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-05T18:40:27.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T19:01:29.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T19:08:18.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-05T20:04:12.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T20:16:48.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="start"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<date key="time:timestamp" value="2011-06-05T20:41:04.000+02:00"/>
+			<string key="concept:name" value="DataCollection"/>
+			<string key="lifecycle:transition" value="complete"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="Immigration"/>
+			<date key="time:timestamp" value="2011-06-05T20:51:29.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="start"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T21:20:06.000+02:00"/>
+		</event>
+		<event>
+			<string key="org:resource" value="Guancio"/>
+			<string key="lifecycle:transition" value="complete"/>
+			<string key="concept:name" value="ChangeResidence"/>
+			<date key="time:timestamp" value="2011-06-05T21:50:15.000+02:00"/>
+		</event>
+	</trace>
+</log>
