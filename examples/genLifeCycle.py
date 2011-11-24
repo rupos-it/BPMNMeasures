@@ -5,14 +5,12 @@ from generator import generate
 from generator import defaultActivityHook
 
 def task2_hook(startTime, attrs):
-    t0, t1, t2, t3 = defaultActivityHook(startTime, attrs)
-    t1 += 60*60
-    t2 += 60*60
-    t3 += 60*60
-    return t0, t1, t2, t3
+    t0 = defaultActivityHook(startTime, attrs)
+    t0 += 15*60
+    return t0
 
 process = Sequence([
 	Entry("secondotask"),
 	Entry("task1", task2_hook)
 	])
-generate(process, 1)
+generate(process, 100)

@@ -7,18 +7,62 @@ import time
 def defaultActivityHook(startTime, attrs):
     t = startTime
     delta1 = random.randint(1, 15*60)
-    delta2 = random.randint(delta1+1, 30*60)
-    delta3 = random.randint(delta2+1, 45*60)
-    delta4 = random.randint(delta3+1, 59*60)
     t0 = t+delta1
-    t1 = t+delta2
-    t2 = t+delta3
-    t3 = t+delta4
-    return t0, t1, t2, t3
+    return t0
     
 def defaultChoiceHook(l, attr):
     x = random.randint(0, len(l)-1)
     return l[x]
+
+
+
+class WFState(object):
+    def __init__(self, name):
+        self.name = name
+        self.transitions = []
+
+class WFTransition(object):
+    def __init__(self, name, targetState):
+        self.name = name
+        self.targetState = targetState
+
+        
+class BaseWF(object):
+    def __init__(self):
+        self.states = {}
+        for sname in ["start", "created", "assigned", "revoking", "revoked", "running", "suspended","skipping", "end"]:
+            self.states[sname] = WFState(sname)
+
+        self.startstatename = "start"
+        self.endstatename = "end"
+        self.states["start"].transitions = [
+            WFTransition("create", "created")
+            ]
+        self.states["created"].transitions = [
+            WFTransition("assign", "assigned"),
+            WFTransition("skipped", "end"),
+            ]
+        self.states["assigned"].transitions = [
+            WFTransition("start", "running"),
+            WFTransition("skipped", "end"),
+            WFTransition("revoke", "revoked")
+            ]
+        self.states["running"].transitions = [
+            WFTransition("complete", "end"),
+            WFTransition("skipped", "end"),
+            WFTransition("pause", "suspended")
+            ]
+        self.states["revoked"].transitions = [
+            WFTransition("reassign", "assigned"),
+            WFTransition("skipped", "end")
+            ]
+        self.states["suspended"].transitions = [
+            WFTransition("resume", "running"),
+            WFTransition("skipped", "end"),
+            WFTransition("revoke", "revoked")
+            ]
+
+
 
 class Empty():
     def __init__(self):
@@ -52,17 +96,22 @@ class Entry:
      <attribute key="%s" value="%s" type="%s"/>
     """ % (key, valueRepr, typeRepr)
 
-    # create - assign - start - complete
     def gen(self, t, attrs):
-        times = self.hook(t, attrs)
-        sformat = "%Y-%m-%dT%H:%M:%S.000+01:00"
-        formattimes = [time.strftime(sformat, time.gmtime(t)) for t in times]
-        attr_str = ""
-        for attr in attrs.keys():
-            attr_str += self.formatAttr(attr, attrs[attr])
-        actions = ["create", "assign", "start", "complete"]
+        wf = BaseWF()
+        currentState = wf.startstatename
+
         res = ""
-        for (t,a) in zip(formattimes, actions):
+
+        while currentState != wf.endstatename:
+            # seleziona una transizione a caso
+            trs = wf.states[currentState].transitions
+            selTrs = trs[random.randint(0, len(trs)-1)]
+            t = self.hook(t, attrs)
+            sformat = "%Y-%m-%dT%H:%M:%S.000+01:00"
+            formattime = time.strftime(sformat, time.gmtime(t))
+            attr_str = ""
+            for attr in attrs.keys():
+                attr_str += self.formatAttr(attr, attrs[attr])
             res += """ 
             <event>
               %s
@@ -70,9 +119,10 @@ class Entry:
               <string key="lifecycle:transition" value="%s"/>
               <string key="concept:name" value="%s"/>
               <date key="time:timestamp" value="%s"/>
-              </event>""" % (attr_str,a, self.name, t)
+              </event>""" % (attr_str, selTrs.name, self.name, formattime)
+            currentState = selTrs.targetState
 
-        return (res, times[-1])
+        return (res, t)
 
 class Recursion:
     def __init__(self, e):
