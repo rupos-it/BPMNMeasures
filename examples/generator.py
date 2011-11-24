@@ -70,7 +70,7 @@ class Entry:
               <string key="lifecycle:transition" value="%s"/>
               <string key="concept:name" value="%s"/>
               <date key="time:timestamp" value="%s"/>
-              </event>""" % (attr_str, self.name, a, t)
+              </event>""" % (attr_str,a, self.name, t)
 
         return (res, times[-1])
 

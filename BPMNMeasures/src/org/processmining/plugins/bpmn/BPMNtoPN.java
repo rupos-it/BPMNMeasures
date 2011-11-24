@@ -120,28 +120,6 @@ public class BPMNtoPN {
 		return objects;
 	}
 
-	private void addArc(Transition t[], String from, Place p[], String to, PetrinetGraph net) {
-		int i,j;
-		try {
-			String[] tok = from.split("\\+");
-			for(i=0; t[i].getLabel()!=tok[1]; i++);
-			tok = to.split("\\+");
-			for(j=0; p[j].getLabel()!=tok[1]; j++);
-			net.addArc(t[i], p[j], 1, this.subNet);
-		} catch (IndexOutOfBoundsException e) {}
-	}
-
-	private void addArc(Place p[], String from, Transition t[], String to, PetrinetGraph net) {
-		int i,j;
-		try {
-		String[] tok = from.split("+");
-		for(i=0; p[i].getLabel()!=tok[1]; i++);
-		tok = to.split("+");
-		for(j=0; t[j].getLabel()!=tok[1]; j++);
-		net.addArc(p[i], t[j], 1, this.subNet);
-		} catch (IndexOutOfBoundsException e) {}
-	}
-	
 	private void translateTask(BPMNDiagram bpmn, LinkedHashMap<Flow,Place> flowMap,
 			PetrinetGraph net) {
 
@@ -155,10 +133,9 @@ public class BPMNtoPN {
 			final String ctd="created", asd="assigned", rvg="revoking", rvd="revoked", run="running", spd="suspended", skg="skipping"; 
 			
 			int i;
-			final int n_vs = 9;
-			final int n_inv = 7;
 			Map<String , Transition> t = new HashMap<String, Transition>();
 			String[] visible = { crt, ass, rvk, rea, st, pau, rsm, cpl, skd };
+			final int n_vs = visible.length;
 			for (i=0; i < n_vs; i++) {
 				String trsName = id + "+" + visible[i];
 				Transition trs = net.addTransition(trsName,this.subNet);
@@ -166,6 +143,7 @@ public class BPMNtoPN {
 				t.put(visible[i], trs);
 			}
 			String[] invisible = { A, B, G, D, S, L, E };
+			final int n_inv = invisible.length;
 			while (i < n_vs + n_inv) {
 				String trsName = id + "+" + invisible[i-n_vs];
 				Transition trs = net.addTransition(trsName,this.subNet);
@@ -174,9 +152,9 @@ public class BPMNtoPN {
 				i++;
 			}
 			
-			final int n_pl = 7;
 			Map<String, Place> p = new HashMap<String, Place>();
 			String[] places = { ctd, asd, rvg, rvd, run, spd, skg };
+			final int n_pl = places.length;
 			for (i=0; i<n_pl; i++) {
 				String placeName = id + "+" + places[i];
 				p.put(places[i], net.addPlace(placeName, this.subNet));
@@ -211,38 +189,6 @@ public class BPMNtoPN {
 			net.addArc (t.get(rsm), p.get(run));
 			net.addArc (p.get(run), t.get(cpl));
 			net.addArc (p.get(skg), t.get(skd));
-/*
-			addArc (p, ctd, t, ass, net);
-			addArc (p, ctd, t, A, net);
-			addArc (t, A, p, skg, net);
-			addArc (t, ass, p, asd, net);
-			addArc (p, asd, t, B, net);
-			addArc (t, B, p, skg, net);
-			addArc (p, asd, t, G, net);
-			addArc (t, G, p, rvg, net);
-			addArc (p, rvg, t, rvk, net);
-			addArc (t, rvk, p, rvd, net);
-			addArc (p, rvd, t, D, net);
-			addArc (t, D, p, skg, net);
-			addArc (p, rvd, t, rea, net);
-			addArc (t, rea, p, asd, net);
-			addArc (p, asd, t, st, net);
-			addArc (t, st, p, run, net);
-			addArc (p, run, t, E, net);
-			addArc (t, E, p, skg, net);
-			addArc (p, run, t, pau, net);
-			addArc (t, pau, p, spd, net);
-			addArc (p, spd, t, S, net);
-			addArc (t, S, p, rvg, net);			
-			addArc (p, spd, t, L, net);
-			addArc (t, L, p, skg, net);
-			addArc (p, spd, t, rsm, net);
-			addArc (t, rsm, p, run, net);
-			addArc (p, run, t, cpl, net);
-			addArc (p, skg, t, skd, net);
-	*/		
-
-			
 			//fine mio task
 			
 			

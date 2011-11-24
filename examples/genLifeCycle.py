@@ -12,7 +12,7 @@ def task2_hook(startTime, attrs):
     return t0, t1, t2, t3
 
 process = Sequence([
-	Entry("Task1"),
-	Entry("Task2", task2_hook)
+	Entry("secondotask"),
+	Entry("task1", task2_hook)
 	])
 generate(process, 1)
