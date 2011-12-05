@@ -132,25 +132,24 @@ public class BPMNtoPN {
 			Transition t1 = net.addTransition(id + "+complete", this.subNet);
 			net.addArc(p, t1, 1, this.subNet);
 
-			for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : c
-					.getGraph().getInEdges(c)) {
-				if(s instanceof Flow)	{
+			for ( BPMNEdge<? extends BPMNNode, ? extends BPMNNode>  s : c.getGraph().getInEdges(c)) {
+				
 
 					Place pst = flowMap.get(s);
 
 					net.addArc(pst, t, 1, this.subNet);
-				}
+				
 
 			}
 			for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : c
 					.getGraph().getOutEdges(c)) {
-				if(s instanceof Flow){
+				
 
 
 					Place pst = flowMap.get(s);
 
 					net.addArc(t1, pst, 1, this.subNet);
-				}
+				
 			}
 
 		}
@@ -336,12 +335,12 @@ public class BPMNtoPN {
 
 				if(e.getBoundingNode()==null){
 					BPMNEdge<? extends BPMNNode, ? extends BPMNNode> g = e.getGraph().getInEdges(e).iterator().next();
-					if(g instanceof Flow && g!=null){
+					if(g!=null){
 						Place ps_pre = flowMap.get(g);
 
 
 						g  = e.getGraph().getOutEdges(e).iterator().next();;
-						if(g instanceof Flow && g!=null){
+						if( g!=null){
 							Place ps_post = flowMap.get(g);
 
 							net.addArc(ps_pre,t, 1, this.subNet);
