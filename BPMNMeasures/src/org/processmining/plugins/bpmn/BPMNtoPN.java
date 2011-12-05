@@ -133,23 +133,23 @@ public class BPMNtoPN {
 			net.addArc(p, t1, 1, this.subNet);
 
 			for ( BPMNEdge<? extends BPMNNode, ? extends BPMNNode>  s : c.getGraph().getInEdges(c)) {
-				
 
-					Place pst = flowMap.get(s);
+				if(s.getSource() instanceof Flow){
+					Place pst = flowMap.get(s.getSource());
 
 					net.addArc(pst, t, 1, this.subNet);
-				
+				}
 
 			}
 			for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : c
 					.getGraph().getOutEdges(c)) {
-				
 
 
-					Place pst = flowMap.get(s);
+				if(s.getTarget() instanceof Flow){
+					Place pst = flowMap.get(s.getTarget());
 
 					net.addArc(t1, pst, 1, this.subNet);
-				
+				}
 			}
 
 		}
@@ -166,23 +166,21 @@ public class BPMNtoPN {
 				if (g.getGraph().getOutEdges(g).size()>1 && g.getGraph().getInEdges(g).size()==1 ){
 					for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g.getGraph().getOutEdges(g)) {
 						String source = s.getSource().getLabel();
-						String target = s.getTarget().getLabel();
+						
 
 						Transition t = net.addTransition(g.getLabel() + "_" + i++,
 								this.subNet);
 						t.setInvisible(true);
-						tranMap.put(target + source, t);
+						tranMap.put( source+i, t);
 
-						Place pst = flowMap.get(s);
+						Place pst = flowMap.get(s.getTarget());
 
 						net.addArc(t, pst, 1, this.subNet);
 
 					}
 					for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g.getGraph().getInEdges(g)) {
-						String source = s.getSource().getLabel();
-						String target = s.getTarget().getLabel();
-
-						Place pst = flowMap.get(s);
+					
+						Place pst = flowMap.get(s.getSource());
 
 						for (Transition t : tranMap.values()) {
 
@@ -196,14 +194,14 @@ public class BPMNtoPN {
 
 						Place ps =null;
 						for(BPMNEdge<? extends BPMNNode, ? extends BPMNNode> out : g.getGraph().getOutEdges(g)) {
-							ps= flowMap.get(out);
+							ps= flowMap.get(out.getTarget());
 						}
 						i=0;
 						for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g.getGraph().getInEdges(g)){
 
 
 
-							Place pst = flowMap.get(s);
+							Place pst = flowMap.get(s.getSource());
 
 							Transition t = net.addTransition(g.getLabel() + "_" + i++,this.subNet );
 							t.setInvisible(true);
@@ -221,14 +219,14 @@ public class BPMNtoPN {
 					if (g.getGraph().getOutEdges(g).size()>1 && g.getGraph().getInEdges(g).size()==1 ){
 						BPMNEdge<? extends BPMNNode, ? extends BPMNNode> so = g.getGraph().getInEdges(g).iterator().next();
 
-						Place ps = flowMap.get(so);
+						Place ps = flowMap.get(so.getSource());
 						Transition t = net.addTransition(g.getLabel() + "_fork",this.subNet );
 						t.setInvisible(true);
 						net.addArc( ps,t, 1, this.subNet);
 						for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g.getGraph().getOutEdges(g)){
 
 
-							Place pst = flowMap.get(s);
+							Place pst = flowMap.get(s.getTarget());
 							net.addArc(t, pst, 1, this.subNet);
 
 						}
@@ -239,13 +237,13 @@ public class BPMNtoPN {
 						if (g.getGraph().getOutEdges(g).size()==1 && g.getGraph().getInEdges(g).size()>1 ){
 							BPMNEdge<? extends BPMNNode, ? extends BPMNNode> so = g.getGraph().getOutEdges(g).iterator().next();
 
-							Place ps = flowMap.get(so);
+							Place ps = flowMap.get(so.getTarget());
 							Transition t = net.addTransition(g.getLabel() + "_join",this.subNet );
 							t.setInvisible(true);
 							net.addArc( t,ps, 1, this.subNet);
 							for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g.getGraph().getInEdges(g)){
 
-								Place pst = flowMap.get(s);
+								Place pst = flowMap.get(s.getSource());
 								net.addArc(pst,t, 1, this.subNet);
 
 							}
@@ -260,11 +258,11 @@ public class BPMNtoPN {
 						if (g.getGraph().getOutEdges(g).size()>1 && g.getGraph().getInEdges(g).size()==1 ){
 							BPMNEdge<? extends BPMNNode, ? extends BPMNNode> so = g.getGraph().getInEdges(g).iterator().next();
 
-							Place ps = flowMap.get(so);
+							Place ps = flowMap.get(so.getSource());
 							int i=0;
 							for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g.getGraph().getOutEdges(g)){
 
-								Place pst = flowMap.get(s);
+								Place pst = flowMap.get(s.getTarget());
 
 								Transition t = net.addTransition(g.getLabel() + "_" + i++,this.subNet );
 								t.setInvisible(true);
@@ -299,7 +297,7 @@ public class BPMNtoPN {
 				for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : e.getGraph().getOutEdges(e)) {
 
 
-					Place pst = flowMap.get(s);
+					Place pst = flowMap.get(s.getTarget());
 
 					net.addArc(t, pst, 1, this.subNet);
 
@@ -319,7 +317,7 @@ public class BPMNtoPN {
 
 				for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : e.getGraph().getInEdges(e)) {
 
-					Place pst = flowMap.get(s);
+					Place pst = flowMap.get(s.getSource());
 
 					net.addArc( pst, t, 1, this.subNet);
 
@@ -335,13 +333,13 @@ public class BPMNtoPN {
 
 				if(e.getBoundingNode()==null){
 					BPMNEdge<? extends BPMNNode, ? extends BPMNNode> g = e.getGraph().getInEdges(e).iterator().next();
-					if(g!=null){
-						Place ps_pre = flowMap.get(g);
+					if(g.getSource() instanceof Flow && g!=null){
+						Place ps_pre = flowMap.get(g.getSource());
 
 
 						g  = e.getGraph().getOutEdges(e).iterator().next();;
-						if( g!=null){
-							Place ps_post = flowMap.get(g);
+						if(g.getTarget() instanceof Flow && g!=null){
+							Place ps_post = flowMap.get(g.getTarget());
 
 							net.addArc(ps_pre,t, 1, this.subNet);
 							net.addArc(t,ps_post, 1, this.subNet);
@@ -350,7 +348,7 @@ public class BPMNtoPN {
 					}
 				}else{
 					//è un evento di confine
-					
+
 				}
 
 			}

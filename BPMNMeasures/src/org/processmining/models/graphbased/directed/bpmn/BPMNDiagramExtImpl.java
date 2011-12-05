@@ -351,7 +351,9 @@ implements BPMNDiagramExt {
 
 	public Set<BPMNEdge<? extends BPMNNode, ? extends BPMNNode>> getEdges() {
 		Set<BPMNEdge<? extends BPMNNode, ? extends BPMNNode>> edges = new HashSet<BPMNEdge<? extends BPMNNode, ? extends BPMNNode>>();
-		edges.addAll(flows);
+		for (Flow flow : flows) {
+			edges.addAll(flow.getRealEdges());
+		}
 		edges.addAll(flowsassociation);
 		return edges;
 	}
@@ -364,6 +366,7 @@ implements BPMNDiagramExt {
 		nodes.addAll(gateways);
 		nodes.addAll(artifacts);
 		nodes.addAll(swimlanes);
+		nodes.addAll(flows);
 		return nodes;
 	}
 
