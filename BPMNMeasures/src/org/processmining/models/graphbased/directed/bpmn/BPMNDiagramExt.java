@@ -8,7 +8,7 @@ import java.util.Set;
 import org.processmining.models.graphbased.directed.DirectedGraph;
 import org.processmining.models.graphbased.directed.bpmn.elements.Artifacts;
 import org.processmining.models.graphbased.directed.bpmn.elements.Flow;
-import org.processmining.models.graphbased.directed.bpmn.elements.FlowAssociation;
+import org.processmining.models.graphbased.directed.bpmn.elements.Association;
 import org.processmining.models.graphbased.directed.bpmn.elements.Swimlane;
 
 import org.processmining.models.graphbased.directed.bpmn.elements.SubProcess;
@@ -28,13 +28,13 @@ public interface BPMNDiagramExt extends BPMNDiagram {
 	Collection<Artifacts> getArtifacts();
 	
 	//FlowAssociation
-	FlowAssociation addFlowAssociation(BPMNNode source, BPMNNode target);
+	Association addFlowAssociation(BPMNNode source, BPMNNode target);
 	
-	FlowAssociation addFlowAssociation(BPMNNode source, BPMNNode target, SubProcess parent);
+	Association addFlowAssociation(BPMNNode source, BPMNNode target, SubProcess parent);
 	
-	FlowAssociation addFlowAssociation(BPMNNode source, BPMNNode target, Swimlane parentSwimlane);
+	Association addFlowAssociation(BPMNNode source, BPMNNode target, Swimlane parentSwimlane);
 
-	Set<FlowAssociation> getFlowAssociation();
+	Set<Association> getFlowAssociation();
 	
 	/*//Association
 	Association addAssociation(AbstractGraphElement source, AbstractGraphElement target);

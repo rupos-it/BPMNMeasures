@@ -22,7 +22,7 @@ import org.processmining.models.graphbased.directed.bpmn.elements.Activity;
 import org.processmining.models.graphbased.directed.bpmn.elements.Artifacts;
 import org.processmining.models.graphbased.directed.bpmn.elements.Event;
 import org.processmining.models.graphbased.directed.bpmn.elements.Flow;
-import org.processmining.models.graphbased.directed.bpmn.elements.FlowAssociation;
+import org.processmining.models.graphbased.directed.bpmn.elements.Association;
 import org.processmining.models.graphbased.directed.bpmn.elements.Gateway;
 import org.processmining.models.graphbased.directed.bpmn.elements.SubProcess;
 import org.processmining.models.graphbased.directed.bpmn.elements.Event.EventTrigger;
@@ -40,13 +40,13 @@ implements BPMNDiagramExt {
 
 
 	protected final Set<Artifacts> artifacts;
-	protected final Set<FlowAssociation> flowsassociation;
+	protected final Set<Association> flowsassociation;
 	//protected final Set<Association> association;
 
 	public BPMNDiagramExtImpl(String label) {
 		super(label);
 		artifacts= new LinkedHashSet<Artifacts>();
-		flowsassociation= new LinkedHashSet<FlowAssociation>();
+		flowsassociation= new LinkedHashSet<Association>();
 
 	}
 
@@ -312,7 +312,7 @@ implements BPMNDiagramExt {
 			
 			mapping.put(a, addArtifacts(a.getLabel(), a.getArtifactType(), (Swimlane)	 mapping.get(a.getParentSwimlane())));
 		}
-		for (FlowAssociation  f : bpmndiagram.getFlowAssociation()) {
+		for (Association  f : bpmndiagram.getFlowAssociation()) {
 			mapping.put(f, addFlowAssociation((BPMNNode) mapping.get(f.getSource()), (BPMNNode) mapping.get(f.getTarget()),
 					(Swimlane)	 mapping.get(f.getParentSwimlane())));
 		}
@@ -340,7 +340,7 @@ implements BPMNDiagramExt {
 	public void removeEdge( DirectedGraphEdge edge) {
 		if (edge instanceof Flow) {
 			flows.remove(edge);
-		} else {if (edge instanceof FlowAssociation) {
+		} else {if (edge instanceof Association) {
 			flowsassociation.remove(edge);
 		} else {
 			assert (false);
@@ -412,16 +412,16 @@ implements BPMNDiagramExt {
 	}
 
 
-	public FlowAssociation addFlowAssociation(BPMNNode source, BPMNNode target,
+	public Association addFlowAssociation(BPMNNode source, BPMNNode target,
 			SubProcess parent) {
-		FlowAssociation f = new FlowAssociation(source, target, parent);
+		Association f = new Association(source, target, parent);
 		flowsassociation.add(f);
 		graphElementAdded(f);
 		return f;
 	}
 
 
-	public Set<FlowAssociation> getFlowAssociation() {
+	public Set<Association> getFlowAssociation() {
 
 		return Collections.unmodifiableSet(flowsassociation);
 	}
@@ -445,20 +445,20 @@ implements BPMNDiagramExt {
 	}
 
 
-	public FlowAssociation addFlowAssociation(BPMNNode source, BPMNNode target) {
+	public Association addFlowAssociation(BPMNNode source, BPMNNode target) {
 
-		FlowAssociation f = new FlowAssociation(source, target);
+		Association f = new Association(source, target);
 		flowsassociation.add(f);
 		graphElementAdded(f);
 		return f;
 	}
 
 
-	public FlowAssociation addFlowAssociation(BPMNNode source, BPMNNode target,
+	public Association addFlowAssociation(BPMNNode source, BPMNNode target,
 			Swimlane parentSwimlane) {
 
 
-		FlowAssociation f = new FlowAssociation(source, target, parentSwimlane);
+		Association f = new Association(source, target, parentSwimlane);
 		flowsassociation.add(f);
 		graphElementAdded(f);
 		return f;

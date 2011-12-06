@@ -157,9 +157,7 @@ public class BPMNDecorateUtil {
 			}
 			if (ArchiAttivatiBPMN.containsKey(from + to)) {
 				Integer i = ArchiAttivatiBPMN.get(from + to);
-				f.getAttributeMap().remove(AttributeMap.SHOWLABEL);
-				f.getAttributeMap().put(AttributeMap.SHOWLABEL, true);
-				f.getAttributeMap().put(AttributeMap.LABEL, i.toString());
+				f.setLabel( i.toString());
 
 			}
 		}
@@ -351,7 +349,7 @@ public class BPMNDecorateUtil {
 						if (p.getLabel().equals(name)) {
 							unsoundallert += ret + " Task missing competition\n";
 						} else if (p.getLabel().startsWith(name) && !tname.endsWith("start") ) {
-							unsoundallert += ret + " Task interrupted executions\n";
+							unsoundallert += ret + " Branch interrupted executions\n";
 						}
 					}
 					for (Place p : missing.baseSet()) {
@@ -373,7 +371,7 @@ public class BPMNDecorateUtil {
 
 							mapActiArtic.put(activity, unsoundallert);
 						}else{
-							 mapActiArtic.get(activity).concat(unsoundallert);
+							mapActiArtic.put(activity,  mapActiArtic.get(activity).concat(unsoundallert));
 							
 
 						}

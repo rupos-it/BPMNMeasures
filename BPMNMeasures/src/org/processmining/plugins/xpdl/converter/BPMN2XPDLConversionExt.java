@@ -16,7 +16,7 @@ import org.processmining.models.graphbased.directed.bpmn.BPMNDiagramExt;
 import org.processmining.models.graphbased.directed.bpmn.BPMNNode;
 import org.processmining.models.graphbased.directed.bpmn.elements.Artifacts;
 import org.processmining.models.graphbased.directed.bpmn.elements.Flow;
-import org.processmining.models.graphbased.directed.bpmn.elements.FlowAssociation;
+import org.processmining.models.graphbased.directed.bpmn.elements.Association;
 import org.processmining.models.jgraph.ProMGraphModel;
 import org.processmining.models.jgraph.ProMJGraphVisualizer;
 import org.processmining.models.jgraph.elements.ProMGraphCell;
@@ -282,7 +282,7 @@ public class BPMN2XPDLConversionExt extends BPMN2XPDLConversion {
 
 
 	private void fillAssociations() {
-		for (FlowAssociation flowa : bpmnext.getFlowAssociation()) {
+		for (Association flowa : bpmnext.getFlowAssociation()) {
 
 			XpdlAssociation t = new XpdlAssociation("Association");
 		
