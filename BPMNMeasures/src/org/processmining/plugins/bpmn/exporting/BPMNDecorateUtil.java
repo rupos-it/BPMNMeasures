@@ -16,6 +16,7 @@ import org.processmining.models.graphbased.directed.ContainingDirectedGraphNode;
 import org.processmining.models.graphbased.directed.bpmn.BPMNDiagram;
 import org.processmining.models.graphbased.directed.bpmn.BPMNDiagramExt;
 import org.processmining.models.graphbased.directed.bpmn.BPMNDiagramExtFactory;
+import org.processmining.models.graphbased.directed.bpmn.BPMNNode;
 
 import org.processmining.models.graphbased.directed.bpmn.elements.Activity;
 import org.processmining.models.graphbased.directed.bpmn.elements.Artifacts;
@@ -88,7 +89,7 @@ public class BPMNDecorateUtil {
 
 		}
 
-		Map<Activity, String> MapActivity = new HashMap<Activity, String>();
+		Map<BPMNNode, String> MapActivity = new HashMap<BPMNNode, String>();
 
 		for (Transition t : net.getTransitions()) {
 			if (!t.isInvisible()) {
@@ -141,7 +142,28 @@ public class BPMNDecorateUtil {
 
 		}
 
-		for (Activity a : MapActivity.keySet()) {
+
+
+		// i sync time sono sempre sulle piazze "arco", quindi cerco l'arco a
+		// cui si riferisco i place con sync time ed aggiungo
+		// il tooltip all'arco e lo coloro di rosso.
+		for (Flow f : bpmn.getFlows()) {
+			String from = f.getSource().getLabel();
+			String to = f.getTarget().getLabel();
+			if (archibpmnwithsyncperformance.containsKey(from + to)) {
+				String flowsync = archibpmnwithsyncperformance.get(from + to);
+				MapActivity.put(f, flowsync);
+
+			}
+			if (ArchiAttivatiBPMN.containsKey(from + to)) {
+				Integer i = ArchiAttivatiBPMN.get(from + to);
+				f.getAttributeMap().remove(AttributeMap.SHOWLABEL);
+				f.getAttributeMap().put(AttributeMap.SHOWLABEL, true);
+				f.getAttributeMap().put(AttributeMap.LABEL, i.toString());
+
+			}
+		}
+		for (BPMNNode a : MapActivity.keySet()) {
 			String text = MapActivity.get(a);
 			String label = "<html>" + text + "</html>";
 			ContainingDirectedGraphNode parent = a.getParent();
@@ -164,30 +186,7 @@ public class BPMNDecorateUtil {
 
 		}
 
-		// i sync time sono sempre sulle piazze "arco", quindi cerco l'arco a
-		// cui si riferisco i place con sync time ed aggiungo
-		// il tooltip all'arco e lo coloro di rosso.
-		for (Flow f : bpmn.getFlows()) {
-			String from = f.getSource().getLabel();
-			String to = f.getTarget().getLabel();
-			if (archibpmnwithsyncperformance.containsKey(from + to)) {
-				String flowsync = archibpmnwithsyncperformance.get(from + to);
-				f.getAttributeMap().remove(AttributeMap.TOOLTIP);
 
-				f.getAttributeMap().put(AttributeMap.TOOLTIP, flowsync);
-				f.getAttributeMap().remove(AttributeMap.SHOWLABEL);
-				f.getAttributeMap().put(AttributeMap.SHOWLABEL, false);
-				f.getAttributeMap().put(AttributeMap.EDGECOLOR, Color.RED);
-
-			}
-			if (ArchiAttivatiBPMN.containsKey(from + to)) {
-				Integer i = ArchiAttivatiBPMN.get(from + to);
-				f.getAttributeMap().remove(AttributeMap.SHOWLABEL);
-				f.getAttributeMap().put(AttributeMap.SHOWLABEL, true);
-				f.getAttributeMap().put(AttributeMap.LABEL, i.toString());
-
-			}
-		}
 
 		return bpmn;
 	}
@@ -330,7 +329,7 @@ public class BPMNDecorateUtil {
 
 		}
 
-		Map<Activity,Artifacts> mapActiArtic = new HashMap<Activity, Artifacts>();
+		Map<BPMNNode,String> mapActiArtic = new HashMap<BPMNNode, String>();
 		// transizioni che nn fittano
 		String ret = "<br/>";
 		for (Transition t : net.getTransitions()) {
@@ -366,39 +365,16 @@ public class BPMNDecorateUtil {
 					if (activity != null && unsoundallert!="") {
 
 
-						String label = "<html>"+ unsoundallert + "<html>";
+						
 						if(!mapActiArtic.containsKey(activity)){
 
 
-							Artifacts art = null;
-							if (activity.getParent() == null) {
-								art = bpmn.addArtifacts(label,
-										ArtifactType.TEXTANNOATION);
-								bpmn.addFlowAssociation(art, activity);
 
-							} else {
-								if (activity.getParent() instanceof SubProcess) {
-									art = bpmn.addArtifacts(label,
-											ArtifactType.TEXTANNOATION,
-											activity.getParentSubProcess());
-									bpmn.addFlowAssociation(art, activity,activity.getParentSubProcess());	
-								} else {
-									if (activity.getParent() instanceof Swimlane) {
-										art = bpmn.addArtifacts(label,
-												ArtifactType.TEXTANNOATION,
-												activity.getParentSwimlane());
-										bpmn.addFlowAssociation(art, activity,activity.getParentSwimlane());
-									}
-								}
-							}
 
-							mapActiArtic.put(activity, art);
+							mapActiArtic.put(activity, unsoundallert);
 						}else{
-							Artifacts art = mapActiArtic.get(activity);
-							label+=art.getLabel();
-							art.getAttributeMap().remove(AttributeMap.LABEL);
-							art.getAttributeMap().put(AttributeMap.LABEL, label);
-
+							 mapActiArtic.get(activity).concat(unsoundallert);
+							
 
 						}
 
@@ -428,6 +404,8 @@ public class BPMNDecorateUtil {
 				}
 
 			}
+
+			
 		}
 		// metto gli attraversamenti sugli archi bpmn
 		for (Flow f : bpmn.getFlows()) {
@@ -436,9 +414,9 @@ public class BPMNDecorateUtil {
 			if (ArchiAttivatiBPMN.containsKey(from + to)) {
 				Integer i = ArchiAttivatiBPMN.get(from + to);
 				if (i > 0) {
-					f.getAttributeMap().put(AttributeMap.LABEL, i.toString());
-					f.getAttributeMap().put(AttributeMap.TOOLTIP, i.toString());
-					f.getAttributeMap().put(AttributeMap.SHOWLABEL, true);
+			
+					f.setLabel(i.toString());
+					
 				}
 
 			}
@@ -446,13 +424,39 @@ public class BPMNDecorateUtil {
 			if (archibpmnwitherrorconformance.containsKey(from + to)) {
 
 				String flowerr = archibpmnwitherrorconformance.get(from + to);
-				f.getAttributeMap().remove(AttributeMap.TOOLTIP);
+				if(!mapActiArtic.containsKey(f)){
+					mapActiArtic.put(f, flowerr);
+				}else{
+					mapActiArtic.put(f,mapActiArtic.get(f).concat(flowerr));
+				}
 
-				f.getAttributeMap().put(AttributeMap.TOOLTIP, flowerr);
-				f.getAttributeMap().remove(AttributeMap.SHOWLABEL);
-				f.getAttributeMap().put(AttributeMap.SHOWLABEL, true);
-				f.getAttributeMap().put(AttributeMap.EDGECOLOR, Color.RED);
+			}
+		}
+		
+		for (BPMNNode a : mapActiArtic.keySet()) {
+			String text = mapActiArtic.get(a);
 
+			String label = "<html>" + text + "</html>";
+			Artifacts art = null;
+			if (a.getParent() == null) {
+				art = bpmn.addArtifacts(label,
+						ArtifactType.TEXTANNOATION);
+				bpmn.addFlowAssociation(art, a);
+
+			} else {
+				if (a.getParent() instanceof SubProcess) {
+					art = bpmn.addArtifacts(label,
+							ArtifactType.TEXTANNOATION,
+							a.getParentSubProcess());
+					bpmn.addFlowAssociation(art, a,a.getParentSubProcess());	
+				} else {
+					if (a.getParent() instanceof Swimlane) {
+						art = bpmn.addArtifacts(label,
+								ArtifactType.TEXTANNOATION,
+								a.getParentSwimlane());
+						bpmn.addFlowAssociation(art, a,a.getParentSwimlane());
+					}
+				}
 			}
 		}
 

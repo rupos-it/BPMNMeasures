@@ -88,7 +88,7 @@ public class BPMN2XPDLConversionExt extends BPMN2XPDLConversion {
 
 			archiAttivatiBPMN.put(String.valueOf(f.hashCode()), i);
 
-			if (f.getAttributeMap().containsKey(AttributeMap.EDGECOLOR)) {
+			/*if (f.getAttributeMap().containsKey(AttributeMap.EDGECOLOR)) {
 				if (f.getAttributeMap().get(AttributeMap.EDGECOLOR).equals(Color.RED)) {
 					String label = f.getAttributeMap().get(AttributeMap.TOOLTIP).toString()
 					.replaceAll("<html>", "").replaceAll("</html>", "").replaceAll("<br/>", " ");
@@ -142,7 +142,7 @@ public class BPMN2XPDLConversionExt extends BPMN2XPDLConversion {
 					}
 
 				}
-			}
+			}*/
 
 		}
 
