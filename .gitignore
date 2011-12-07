@@ -14,5 +14,11 @@ PetriNetReplayAnalysis/dist/
 BPMNMeasures/dist/
 
 examples
+cover-xml
 prom61_origin
 rupos_context
+cover-html
+cobertura.ser
+bin-test
+bin-test-instrument
+TEST-org.processmining*
