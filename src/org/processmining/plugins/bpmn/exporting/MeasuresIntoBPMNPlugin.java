@@ -36,7 +36,7 @@ import org.processmining.plugins.petrinet.replay.util.ReplayAnalysisConnection;
 	
 	private BPMNDiagram bpmnext;
 
-	@UITopiaVariant(affiliation = "Dipartimento Informatica Università di Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
+	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
 	@PluginVariant(requiredParameterLabels = { 0 }, variantLabel = "Exporting  Total Conformance to BPMN")
 	public Object exportBPMNexportXPDL(PluginContext context, TotalConformanceResult totalconformanceresult) throws Exception {
 
@@ -71,7 +71,7 @@ import org.processmining.plugins.petrinet.replay.util.ReplayAnalysisConnection;
 
 	}
 
-	@UITopiaVariant(affiliation = "Dipartimento Informatica Università di Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
+	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
 	@PluginVariant(requiredParameterLabels = { 3,2 }, variantLabel = "Exporting  Conformance to BPMN")
 	public Object exportBPMNexportXPDL(PluginContext context,Petrinet net, ConformanceResult conformanceresult) throws Exception {
 
@@ -106,7 +106,7 @@ import org.processmining.plugins.petrinet.replay.util.ReplayAnalysisConnection;
 
 	}
 
-	@UITopiaVariant(affiliation = "Dipartimento Informatica Università di Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
+	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
 	@PluginVariant(requiredParameterLabels = { 1 }, variantLabel = "BPMN Performance traslate")
 	public Object exportBPMNexportXPDL(PluginContext context,  TotalPerformanceResult totalPerformanceresult) throws Exception {
 
@@ -139,7 +139,7 @@ import org.processmining.plugins.petrinet.replay.util.ReplayAnalysisConnection;
 
 	}
 	
-	@UITopiaVariant(affiliation = "Dipartimento Informatica Università di Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
+	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
 	@PluginVariant(requiredParameterLabels = { 3,4 }, variantLabel = "BPMN Performance traslate")
 	public Object exportBPMNexportXPDL(PluginContext context, Petrinet net,PerformanceResult Performanceresult) throws Exception {
 

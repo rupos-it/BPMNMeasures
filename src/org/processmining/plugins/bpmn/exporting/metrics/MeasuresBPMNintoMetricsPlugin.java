@@ -51,7 +51,7 @@ public class MeasuresBPMNintoMetricsPlugin {
 
 	@Plugin(name = "BPMNMAnalisysDetailsintoMetricsConformance", parameterLabels = {  "TotalConformanceResult" }, returnLabels = { "BPMN Metrics traslate" }, returnTypes = {
 			LinkedList.class }, userAccessible = true)
-	@UITopiaVariant(affiliation = "Dipartimento Informatica Università di Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
+	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
 	@PluginVariant(requiredParameterLabels = { 0 }, variantLabel = "Exporting  Total Conformance to BPMN Metrics")
 	public LinkedList<BPMNConfMetrics> exportBPMNexportXPDL(PluginContext context, TotalConformanceResult totalconformanceresult) throws Exception {
 
@@ -210,7 +210,7 @@ public class MeasuresBPMNintoMetricsPlugin {
 	@Plugin(name = "BPMNMAnalisysDetailsintoMetricsPerformance", parameterLabels = {  "TotalPerformanceResult" }, returnLabels = { "BPMN Metrics traslate" }, returnTypes = {
 			LinkedList.class }, userAccessible = true)
 
-	@UITopiaVariant(affiliation = "Dipartimento Informatica Università di Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
+	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
 	@PluginVariant(requiredParameterLabels = { 0 }, variantLabel = "BPMN Performance traslate")
 	public LinkedList<BPMNPerfMetrics> exportBPMNexportXPDL(PluginContext context,  TotalPerformanceResult totalPerformanceresult) throws Exception {
 

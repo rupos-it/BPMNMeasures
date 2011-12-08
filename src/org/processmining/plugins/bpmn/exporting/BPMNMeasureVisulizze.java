@@ -32,7 +32,7 @@ public class BPMNMeasureVisulizze {
 	
 
 	@PluginVariant(requiredParameterLabels = { 0 },variantLabel="BPMN")
-	@UITopiaVariant(affiliation = "Dipartimento Informatica Università di Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
+	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
 	public JComponent visualize(UIPluginContext context, TotalPerformanceResult tovisualize) {
 		Progress progress = context.getProgress();
 		BPMNMeasuresPanelPerformance panel = new BPMNMeasuresPanelPerformance(context,   tovisualize);
@@ -41,7 +41,7 @@ public class BPMNMeasureVisulizze {
 
 
 	@PluginVariant(requiredParameterLabels = { 0 })
-	@UITopiaVariant(affiliation = "Dipartimento Informatica Università di Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
+	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
 	public JComponent visualize(UIPluginContext context, TotalConformanceResult resultc) {
 		
 			

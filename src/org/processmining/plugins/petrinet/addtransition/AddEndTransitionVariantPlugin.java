@@ -34,7 +34,7 @@ public class AddEndTransitionVariantPlugin extends AddEndTransitionPlugin {
 
 	//@PluginVariant(requiredParameterLabels = { 0 },variantLabel="variant")
 	@Plugin(name = "Add Artificial End Transition Variant", parameterLabels = { "PetriNet" }, returnLabels = { "PetriNet", "Initial Marking" }, returnTypes = { Petrinet.class, Marking.class })
-	@UITopiaVariant(affiliation = "Dipartimento Informatica Università di Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
+	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
 	public Object addVariantTransition(PluginContext context, Petrinet oldnet){
 
 		Object[]  result =  (Object[]) this.addTransition(context, oldnet);

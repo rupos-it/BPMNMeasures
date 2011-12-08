@@ -67,7 +67,7 @@ public class BPMNtoPN {
 			parameterLabels = { "BPMNDiagram" },
 			returnLabels = {"Petri Net", "Marking",  "Error Log" },
 			returnTypes = { Petrinet.class, Marking.class, String.class},userAccessible = true)
-	@UITopiaVariant(affiliation = "Dipartimento Informatica Università di Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
+	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
 	@PluginVariant(requiredParameterLabels = {0}, variantLabel = "Trasform BPMN to PN")
 	public Object BPMN2PN(PluginContext c ,BPMNDiagram bpmn) {
 		Collection<String> error = this.isWellFormed(bpmn);
