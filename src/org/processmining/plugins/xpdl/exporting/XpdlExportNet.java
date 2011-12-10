@@ -17,7 +17,7 @@ import org.processmining.plugins.xpdl.Xpdl;
 
 import org.processmining.plugins.xpdl.converter.BPMN2XPDLConversionExt;
 
-@Plugin(name = "XPDL export (Bussines Notation with Artifact)", returnLabels = {}, returnTypes = {}, parameterLabels = { "XPDL open",
+@Plugin(name = "XPDL export Bussines Notation with Artifact", returnLabels = {}, returnTypes = {}, parameterLabels = { "XPDL open",
 		 "File" }, userAccessible = true)
 @UIExportPlugin(description = "xpdl files", extension = "xpdl")
 public class XpdlExportNet {
