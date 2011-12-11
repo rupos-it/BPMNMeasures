@@ -55,7 +55,7 @@ public class BPMNConfMetrics {
 	public String toString(){
 		String task = taskMetrics.toString();
 		String fork = forkMetrics.toString();
-		return "NomeTraccia "+TraceName+"\n"+task+"\n"+fork+"\n\n";
+		return "Name Trace "+TraceName+"\n"+task+"\n"+fork+"\n\n";
 		
 	}
 	

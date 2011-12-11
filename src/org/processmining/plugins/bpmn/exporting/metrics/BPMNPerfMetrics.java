@@ -54,7 +54,7 @@ public class BPMNPerfMetrics {
 	public String toString(){
 		String task = taskMetrics.toString();
 		String join = joinMetrics.toString();
-		return "NomeTraccia "+TraceName+"\n"+task+"\n"+join+"\n\n";
+		return "Name_Trace "+TraceName+"\n"+task+"\n"+join+"\n\n";
 		
 	}
 	

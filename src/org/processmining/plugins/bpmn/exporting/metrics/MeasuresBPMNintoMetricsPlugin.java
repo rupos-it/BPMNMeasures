@@ -139,7 +139,7 @@ public class MeasuresBPMNintoMetricsPlugin {
 						metritask.addMissingCompletitions();
 
 					} else if (p.getLabel().startsWith(name) && !tname.endsWith("start") ) {
-						metritask.addInterruptedExecutions();
+						metritask.addInterruptedBranchExecutions();
 					}
 				}
 				for (Place p : missing) {

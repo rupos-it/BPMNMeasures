@@ -680,10 +680,10 @@ public class BPMNtoPN {
 				trigger=EventTrigger.NONE;
 			switch (trigger) {
 			case COMPENSATION :   maperror.add("Event not valid [["+e.getLabel()+"]]");    break;
-			case LINK : maperror.add("Evento not valid [["+e.getLabel()+"]]"); break;
-			case CONDITIONAL : maperror.add("Evento not valid [["+e.getLabel()+"]]"); break;
-			case SIGNAL : maperror.add("Evento not valid [["+e.getLabel()+"]]"); break;
-			case MESSAGE : maperror.add("Evento not valid [["+e.getLabel()+"]]"); break;
+			case LINK : maperror.add("Event not valid [["+e.getLabel()+"]]"); break;
+			case CONDITIONAL : maperror.add("Event not valid [["+e.getLabel()+"]]"); break;
+			case SIGNAL : maperror.add("Event not valid [["+e.getLabel()+"]]"); break;
+			case MESSAGE : maperror.add("Event not valid [["+e.getLabel()+"]]"); break;
 
 			}
 
@@ -693,7 +693,7 @@ public class BPMNtoPN {
 			//se trovo start o end che non sono di tipo NONE
 			if(type.equals(EventType.START) || type.equals(EventType.END)){
 				if (!trigger.equals(EventTrigger.NONE)){
-					maperror.add("Evento not valid [["+e.getLabel()+"]]");
+					maperror.add("Event not valid [["+e.getLabel()+"]]");
 				}
 			}
 

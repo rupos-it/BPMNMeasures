@@ -18,4 +18,6 @@ petrinet = bpmn_to_petrinet(bpmn)[0];
 junit.framework.Assert.assertNotNull("PN is not null", petrinet);
 
  add_artificial_end_transition_variant(petrinet);
+ 
+ add_artificial_end_transition_variant(petrinet,"End");
 

@@ -28,7 +28,7 @@ public class JoinPerfMetrics {
 
 	@Override
 	public String toString() {
-		return "JoinPerfMetrics [synchronizationTime=" + synchronizationTime
+		return "Join_Performance_Metrics [synchronization_Time=" + synchronizationTime
 				+ "]";
 	}
 

@@ -2,7 +2,7 @@ package org.processmining.plugins.bpmn.exporting.metrics;
 
 public class TaskConfMetrics {
 	int unsoundExecutions; // Attivazione non previste del task
-	int interruptedExecutions; // Il processo è fermo dopo il compltetamento del task
+	int interruptedBranchExecutions; // Il processo è fermo dopo il compltetamento del task
 	int missingCompletitions; // L'attività non è terminata
 	int internalFailure; // Visto il complete ma non lo start
 	
@@ -12,7 +12,7 @@ public class TaskConfMetrics {
 			int missingCompletitions, int internalFailure) {
 		super();
 		this.unsoundExecutions = unsoundExecutions;
-		this.interruptedExecutions = interruptedExecutions;
+		this.interruptedBranchExecutions = interruptedExecutions;
 		this.missingCompletitions = missingCompletitions;
 		this.internalFailure = internalFailure;
 	}
@@ -20,7 +20,7 @@ public class TaskConfMetrics {
 	public TaskConfMetrics() {
 		
 		this.unsoundExecutions = 0;
-		this.interruptedExecutions = 0;
+		this.interruptedBranchExecutions = 0;
 		this.missingCompletitions = 0;
 		this.internalFailure = 0;
 	}
@@ -31,11 +31,11 @@ public class TaskConfMetrics {
 	public void setUnsoundExecutions(int unsoundExecutions) {
 		this.unsoundExecutions = unsoundExecutions;
 	}
-	public int getInterruptedExecutions() {
-		return interruptedExecutions;
+	public int getInterruptedBranchExecutions() {
+		return interruptedBranchExecutions;
 	}
 	public void setInterruptedExecutions(int interruptedExecutions) {
-		this.interruptedExecutions = interruptedExecutions;
+		this.interruptedBranchExecutions = interruptedExecutions;
 	}
 	public int getMissingCompletitions() {
 		return missingCompletitions;
@@ -53,8 +53,8 @@ public class TaskConfMetrics {
 	public void addUnsoundExecutions() {
 		unsoundExecutions++;
 	}
-	public void addInterruptedExecutions() {
-		interruptedExecutions++;
+	public void addInterruptedBranchExecutions() {
+		interruptedBranchExecutions++;
 	}
 	public void addMissingCompletitions() {
 		 missingCompletitions++;
@@ -66,13 +66,13 @@ public class TaskConfMetrics {
 	public void updateMetric(TaskConfMetrics metritask) {
 		
 		this.unsoundExecutions += metritask.getUnsoundExecutions();
-		this.interruptedExecutions += metritask.getInterruptedExecutions();
+		this.interruptedBranchExecutions += metritask.getInterruptedBranchExecutions();
 		this.missingCompletitions += metritask.getMissingCompletitions();
 		this.internalFailure += metritask.getInternalFailure();
 	}
 
 	public boolean isEmpty(){
-		if(unsoundExecutions>0 || interruptedExecutions>0 ||
+		if(unsoundExecutions>0 || interruptedBranchExecutions>0 ||
 			internalFailure>0 || missingCompletitions>0){
 			return false;
 		}
@@ -81,10 +81,10 @@ public class TaskConfMetrics {
 	
 	@Override
 	public String toString() {
-		return "TaskConfMetrics [unsoundExecutions=" + unsoundExecutions
-				+ ", interruptedExecutions=" + interruptedExecutions
-				+ ", missingCompletitions=" + missingCompletitions
-				+ ", internalFailure=" + internalFailure + "]";
+		return "Task_Conformance_Metrics [Unsound_Executions=" + unsoundExecutions
+				+ ", Interrupted_Branch_Executions=" + interruptedBranchExecutions
+				+ ", Missing_Completitions=" + missingCompletitions
+				+ ", Internal_Failure=" + internalFailure + "]";
 	}
 	
 	
