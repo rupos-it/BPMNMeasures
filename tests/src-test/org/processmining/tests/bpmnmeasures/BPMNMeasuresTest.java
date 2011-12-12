@@ -1,4 +1,4 @@
-package org.processmining.tests.bpmnrupos;
+package org.processmining.tests.bpmnmeasures;
 
 import org.junit.Test;
 import org.processmining.contexts.cli.CLI;
