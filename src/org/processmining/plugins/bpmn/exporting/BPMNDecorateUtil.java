@@ -352,7 +352,7 @@ public class BPMNDecorateUtil {
 						if (p.getLabel().equals(name)) {
 							unsoundallert += ret + " Task missing competition\n";
 						} else if (p.getLabel().startsWith(name) && !tname.endsWith("start") ) {
-							unsoundallert += ret + " Task interrupted executions\n";
+							unsoundallert += ret + " Branch interrupted executions\n";
 						}
 					}
 					for (Place p : missing.baseSet()) {
