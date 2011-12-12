@@ -35,7 +35,7 @@ junit.framework.Assert.assertNotNull("Conformance is not null", result);
 print("Result"+result);
 
  metrics = bpmnmanalisysdetailsintometricsconformance(result);
-newbpmn= bpmnmeasureswithanalisysdetails(result);
+newbpmn= bpmn_measures_with_analisys_details(result);
 
 visualize_bpmn_metrics(metrics);
 
