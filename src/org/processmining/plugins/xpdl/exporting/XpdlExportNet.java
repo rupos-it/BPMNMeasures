@@ -67,8 +67,8 @@ public class XpdlExportNet {
 		bw.close();*/
 		
 		BPMN2XPDLConversionExt xpdlConversion = new BPMN2XPDLConversionExt(brnet);
-		//Xpdl xpdl = xpdlConversion.fills_nolayout();
-		Xpdl xpdl = xpdlConversion.fills_layout(context);
+		Xpdl xpdl = xpdlConversion.fills_nolayout();
+		//Xpdl xpdl = xpdlConversion.fills_layout(context);
 
 		String text = "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n" + xpdl.exportElement();
 		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(file)));
