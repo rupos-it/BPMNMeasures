@@ -82,7 +82,6 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 	
 
 	private void painttabtrace() {
-		// TODO Auto-generated method stub
 		this.setBackground(new Color(30, 30, 30));
 
 		JPanel jp = new JPanel();
