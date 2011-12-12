@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<WorkflowLog xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="http://is.tm.tue.nl/research/processmining/WorkflowLog.xsd" description="Sample Guancio Log File">
+  <Source program="Example One from Guancio"/>
+  <Process id="Paper" description="Paper Submission">
+
+
+    <ProcessInstance id="0" description="PaperOne">
+        <AuditTrailEntry>
+	<WorkflowModelElement>Immigration</WorkflowModelElement>
+	<EventType >start</EventType>
+	<Timestamp>2011-06-01T16:14:56.000+01:00</Timestamp>
+	<Originator>Guancio</Originator>
+      </AuditTrailEntry>
+      <AuditTrailEntry>
+	<WorkflowModelElement>Immigration</WorkflowModelElement>
+	<EventType >complete</EventType>
+	<Timestamp>2011-06-01T16:31:19.000+01:00</Timestamp>
+	<Originator>Guancio</Originator>
+      </AuditTrailEntry>
+       <AuditTrailEntry>
+	<WorkflowModelElement>Emigration</WorkflowModelElement>
+	<EventType >start</EventType>
+	<Timestamp>2011-06-01T17:24:33.000+01:00</Timestamp>
+	<Originator>Guancio</Originator>
+      </AuditTrailEntry>
+      <AuditTrailEntry>
+	<WorkflowModelElement>Emigration</WorkflowModelElement>
+	<EventType >complete</EventType>
+	<Timestamp>2011-06-01T17:37:10.000+01:00</Timestamp>
+	<Originator>Guancio</Originator>
+      </AuditTrailEntry>
+        
+      <AuditTrailEntry>
+	<WorkflowModelElement>DataCollection</WorkflowModelElement>
+	<EventType >start</EventType>
+	<Timestamp>2011-06-01T17:25:27.000+01:00</Timestamp>
+	<Originator>Guancio</Originator>
+      </AuditTrailEntry>
+      
+        
+      <AuditTrailEntry>
+	<WorkflowModelElement>ChangeResidence</WorkflowModelElement>
+	<EventType >start</EventType>
+	<Timestamp>2011-06-01T17:35:21.000+01:00</Timestamp>
+	<Originator>Guancio</Originator>
+      </AuditTrailEntry>
+      <AuditTrailEntry>
+	<WorkflowModelElement>ChangeResidence</WorkflowModelElement>
+	<EventType >complete</EventType>
+	<Timestamp>2011-06-01T17:42:41.000+01:00</Timestamp>
+	<Originator>Guancio</Originator>
+      </AuditTrailEntry>
+      
+    </ProcessInstance>
+
+
+
+
+
+  </Process>
+</WorkflowLog>
+

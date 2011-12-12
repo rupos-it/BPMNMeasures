@@ -6,6 +6,7 @@
 		<property name="doc" location="doc" />
 		<property name="lib" location="lib" />
 		<property name="dist" location="dist" />
+		<property name="xslt" location="xslt" />
 		<property name="release" location="latestrelease" />
 		<property name="version" value="6.1.${env.BUILD_NUMBER}" />
 		<property name="project" value="BPMNMeasures" />
@@ -35,7 +36,12 @@
 					<!-- Check for unsafe operations -->
 					<compilerarg value="-Xlint:unchecked" />
 				</javac>
+				<!--<mkdir dir="${build}/xslt"/>
+				<copy todir="${build}/xslt">
+      				<fileset dir="${xslt}"/>
+			        </copy>-->
 			</sequential>
+			
 		</macrodef>
 
 		<!-- Jar macro
@@ -55,10 +61,10 @@
 						<include name="**" />
 						<exclude name="test**" />
 					</fileset>
-					<fileset dir="${doc}">
-						<include name="**" />
-						<exclude name="test**" />
-					</fileset>
+					<!-- <fileset dir="${doc}"> -->
+					<!-- 	<include name="**" /> -->
+					<!-- 	<exclude name="test**" /> -->
+					<!-- </fileset> -->
 					<manifest>
 						<attribute name="Built-By" value="${user.name}" />
 						<attribute name="Specification-Title" value="${project}-@{module}" />
@@ -99,9 +105,6 @@
 		<target name="Create downloadable archive" depends="Compile Sources">
 			<echo message="Building zip file packaging this project" />
 			<sequential>
-				<delete includeEmptyDirs="true" quiet="true">
-			    	<fileset dir="${release}" includes="${project}-*-${os}.zip"/>
-			  	</delete>
 				<zip destfile="${release}/${project}-${version}-${os}.zip">
 					<zipfileset dir="${lib}" prefix="lib">
 						<include name="**" />
@@ -125,16 +128,21 @@
 							version="${version}" 
 							os="all" 
 							url="http://www.promtools.org/prom6/packages/${project}/${project}-${version}-${os}.zip"
-							desc="BPMNMeasures"
-							org="University of Pisa" 
-							license="LGPL" 
-							author="Giorgio Spagnolo (spagnolo@di.unipi.it)"
+							desc="Artifact Modeling"
+							org="Dipartimento di Informatica University of Pisa" 
+							license="BPMNMeasures" 
+							author="R. Guanciale {guancio@gmail.com}, G. Spagnolo {spagnolo@di.unipi.it} et al. "
 							auto="false"
 							hasPlugins="true"
-							logo="http://www.promtools.org/prom6/packages/prom_subtitle_hat_300.png"
+							logo="http://www.promtools.org/prom6/packages/6.1/prom_subtitle_hat_300.png"
 						>
+							<dependency name="Log"/>
 							<dependency name="BPMN"/>
+							<dependency name="LogDialog"/>
+							<dependency name="PetriNetReplayAnalysis"/>
 							<dependency name="PetriNets"/>
+							<dependency name="PetriNetReplayer"/>
+
 						</package>
 					</packages>
 				</echoxml>
