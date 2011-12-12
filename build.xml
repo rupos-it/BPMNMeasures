@@ -1,4 +1,4 @@
-<project name="BPMN" default="Compile Sources" basedir=".">
+<project name="BPMNMeasures" default="Compile Sources" basedir=".">
 		<!-- set global properties for this build -->
 		<property environment="env" />
 		<property name="src" location="src" />
@@ -36,10 +36,10 @@
 					<!-- Check for unsafe operations -->
 					<compilerarg value="-Xlint:unchecked" />
 				</javac>
-				<mkdir dir="${build}/xslt"/>
+				<!--<mkdir dir="${build}/xslt"/>
 				<copy todir="${build}/xslt">
       				<fileset dir="${xslt}"/>
-			        </copy>
+			        </copy>-->
 			</sequential>
 			
 		</macrodef>
@@ -82,7 +82,7 @@
 
 
 		<!-- clean all binaries and distributions -->
-		<target name="clean" description="clean up" id="1">
+		<target name="Clean build and dist folders" description="clean up" id="1">
 			<!-- Delete the ${build} and ${dist} directory trees -->
 			<delete dir="${build}" />
 			<delete dir="${dist}" />
@@ -131,7 +131,7 @@
 							desc="Artifact Modeling"
 							org="Dipartimento di Informatica University of Pisa" 
 							license="BPMNMeasures" 
-							author="R. Guanciale, G. Spagnolo et al."
+							author="R. Guanciale {guancio@gmail.com}, G. Spagnolo {spagnolo@di.unipi.it} et al. "
 							auto="false"
 							hasPlugins="true"
 							logo="http://www.promtools.org/prom6/packages/6.1/prom_subtitle_hat_300.png"
