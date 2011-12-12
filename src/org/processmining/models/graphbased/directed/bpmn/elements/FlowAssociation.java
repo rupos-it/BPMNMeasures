@@ -33,7 +33,6 @@ public class FlowAssociation extends BPMNEdge<BPMNNode, BPMNNode> implements Dec
 	
 	
 	private void fillAttributes() {
-		// TODO Auto-generated method stub
 		float[] v = new float[2];
         v[0] = 1;
         v[1] = 3;
@@ -78,7 +77,6 @@ public class FlowAssociation extends BPMNEdge<BPMNNode, BPMNNode> implements Dec
 	
 	public void decorate(Graphics2D g2d, double x, double y, double width,
 			double height) {
-		// TODO Auto-generated method stub
 		if (decorator != null) {
 			decorator.decorate(g2d, x, y, width, height);
 		}

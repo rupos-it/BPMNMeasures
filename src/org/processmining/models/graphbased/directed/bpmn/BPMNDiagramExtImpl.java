@@ -425,7 +425,6 @@ implements BPMNDiagramExt {
 
 
 	public Artifacts addArtifacts(String label, ArtifactType artifactType) {
-		// TODO Auto-generated method stub
 		Artifacts a = new Artifacts(this, label,artifactType);
 		artifacts.add(a);
 		graphElementAdded(a);
@@ -463,20 +462,6 @@ implements BPMNDiagramExt {
 
 
 
-	/*@Override
-	public Association addAssociation(AbstractGraphElement source,
-			AbstractGraphElement target) {
-		// TODO Auto-generated method stub
-		Association f = new Association(source, target);
-		association.add(f);
-		graphElementAdded(f);
-		return f;
-	}
-
-	@Override
-	public Set<Association> getAssociation() {
-		// TODO Auto-generated method stub
-		return this.association;
-	}*/
+	
 
 }

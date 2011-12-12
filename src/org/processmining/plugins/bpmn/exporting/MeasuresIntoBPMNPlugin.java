@@ -32,12 +32,13 @@ import org.processmining.plugins.petrinet.replay.util.ReplayAnalysisConnection;
 
 @Plugin(name = "BPMN Measures with Analisys Details", parameterLabels = {  "TotalConformanceResult" , "TotalPerformanceResult" , "ConformanceResult" , "Petrinets", "PerformanceResult"}, returnLabels = { "BPMN  traslate" }, returnTypes = {
 		BPMNDiagramExt.class }, userAccessible = true)
-		public class MeasuresIntoBPMNPlugin {
-	
-	private BPMNDiagram bpmnext;
+public class MeasuresIntoBPMNPlugin {
 
+	private BPMNDiagram bpmnext;
+	
+	
 	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
-	@PluginVariant(requiredParameterLabels = { 0 }, variantLabel = "Exporting  Total Conformance to BPMN")
+	@PluginVariant(requiredParameterLabels = { 0 })
 	public Object exportBPMNexportXPDL(PluginContext context, TotalConformanceResult totalconformanceresult) throws Exception {
 
 		try {
@@ -47,32 +48,32 @@ import org.processmining.plugins.petrinet.replay.util.ReplayAnalysisConnection;
 			// connection found. Create all necessary component to instantiate inactive visualization panel
 			// log = connection.getObjectWithRole(ReplayRuposConnection.XLOG);
 			Petrinet net= connection.getObjectWithRole(ReplayAnalysisConnection.PNET);
-		
+
 			BPMNtoPNConnection connection2 = context.getConnectionManager().getFirstConnection(
 					BPMNtoPNConnection.class, context, net);
 
 			// connection found. Create all necessary component to instantiate inactive visualization panel
-			
-		    BPMNDiagram bpmn = connection2.getObjectWithRole(BPMNtoPNConnection.BPMN);
-		    Collection<Place> placeFlowCollection = connection2.getObjectWithRole(BPMNtoPNConnection.PLACEFLOWCONNECTION);
-			
+
+			BPMNDiagram bpmn = connection2.getObjectWithRole(BPMNtoPNConnection.BPMN);
+			Collection<Place> placeFlowCollection = connection2.getObjectWithRole(BPMNtoPNConnection.PLACEFLOWCONNECTION);
+
 			bpmnext = BPMNDecorateUtil.exportConformancetoBPMN(bpmn, net, totalconformanceresult.getTotal(), placeFlowCollection);
-			
+
 
 
 		} catch (ConnectionCannotBeObtained e) {
 			// No connections available
 			context.log("Connection does not exist", MessageLevel.DEBUG);
-			
+
 		}
-		
+
 
 		return bpmnext;
 
 	}
 
 	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
-	@PluginVariant(requiredParameterLabels = { 3,2 }, variantLabel = "Exporting  Conformance to BPMN")
+	@PluginVariant(requiredParameterLabels = { 3,2 })
 	public Object exportBPMNexportXPDL(PluginContext context,Petrinet net, ConformanceResult conformanceresult) throws Exception {
 
 		try {
@@ -82,32 +83,32 @@ import org.processmining.plugins.petrinet.replay.util.ReplayAnalysisConnection;
 			// connection found. Create all necessary component to instantiate inactive visualization panel
 			// log = connection.getObjectWithRole(ReplayRuposConnection.XLOG);
 			Petrinet net= connection.getObjectWithRole(ReplayRuposConnection.PNET);*/
-		
+
 			BPMNtoPNConnection connection2 = context.getConnectionManager().getFirstConnection(
 					BPMNtoPNConnection.class, context, net);
 
 			// connection found. Create all necessary component to instantiate inactive visualization panel
-			
-		    BPMNDiagram bpmn = connection2.getObjectWithRole(BPMNtoPNConnection.BPMN);
-		    Collection<Place> placeFlowCollection = connection2.getObjectWithRole(BPMNtoPNConnection.PLACEFLOWCONNECTION);
-			
+
+			BPMNDiagram bpmn = connection2.getObjectWithRole(BPMNtoPNConnection.BPMN);
+			Collection<Place> placeFlowCollection = connection2.getObjectWithRole(BPMNtoPNConnection.PLACEFLOWCONNECTION);
+
 			bpmnext = BPMNDecorateUtil.exportConformancetoBPMN(bpmn, net, conformanceresult, placeFlowCollection);
-			
+
 
 
 		} catch (ConnectionCannotBeObtained e) {
 			// No connections available
 			context.log("Connection does not exist", MessageLevel.DEBUG);
-			
+
 		}
-		
+
 
 		return bpmnext;
 
 	}
 
 	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
-	@PluginVariant(requiredParameterLabels = { 1 }, variantLabel = "BPMN Performance traslate")
+	@PluginVariant(requiredParameterLabels = { 1 })
 	public Object exportBPMNexportXPDL(PluginContext context,  TotalPerformanceResult totalPerformanceresult) throws Exception {
 
 		try {
@@ -117,19 +118,19 @@ import org.processmining.plugins.petrinet.replay.util.ReplayAnalysisConnection;
 			// connection found. Create all necessary component to instantiate inactive visualization panel
 			//XLog log = connection.getObjectWithRole(ReplayRuposConnection.XLOG);
 			Petrinet net= connection.getObjectWithRole(ReplayAnalysisConnection.PNET);
-		
+
 			BPMNtoPNConnection connection2 = context.getConnectionManager().getFirstConnection(
 					BPMNtoPNConnection.class, context, net);
 
 			// connection found. Create all necessary component to instantiate inactive visualization panel
-			
-		   BPMNDiagram bpmn = connection2.getObjectWithRole(BPMNtoPNConnection.BPMN);
-		   Collection< Place>  placeFlowCollection = connection2.getObjectWithRole(BPMNtoPNConnection.PLACEFLOWCONNECTION);
-			
-		   //cambiare con total
-		   return BPMNDecorateUtil.exportPerformancetoBPMN(bpmn,  totalPerformanceresult.getListperformance().get(0), placeFlowCollection,net);
-			
-			 
+
+			BPMNDiagram bpmn = connection2.getObjectWithRole(BPMNtoPNConnection.BPMN);
+			Collection< Place>  placeFlowCollection = connection2.getObjectWithRole(BPMNtoPNConnection.PLACEFLOWCONNECTION);
+
+			//cambiare con total
+			return BPMNDecorateUtil.exportPerformancetoBPMN(bpmn,  totalPerformanceresult.getListperformance().get(0), placeFlowCollection,net);
+
+
 
 		} catch (ConnectionCannotBeObtained e) {
 			// No connections available
@@ -138,27 +139,27 @@ import org.processmining.plugins.petrinet.replay.util.ReplayAnalysisConnection;
 		}
 
 	}
-	
+
 	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
-	@PluginVariant(requiredParameterLabels = { 3,4 }, variantLabel = "BPMN Performance traslate")
+	@PluginVariant(requiredParameterLabels = { 3,4 })
 	public Object exportBPMNexportXPDL(PluginContext context, Petrinet net,PerformanceResult Performanceresult) throws Exception {
 
 		try {
-			
-			
-		
+
+
+
 			BPMNtoPNConnection connection2 = context.getConnectionManager().getFirstConnection(
 					BPMNtoPNConnection.class, context, net);
 
 			// connection found. Create all necessary component to instantiate inactive visualization panel
-			
-		   BPMNDiagram bpmn = connection2.getObjectWithRole(BPMNtoPNConnection.BPMN);
-		  Collection< Place>  placeFlowCollection = connection2.getObjectWithRole(BPMNtoPNConnection.PLACEFLOWCONNECTION);
-			
-		   
-		   return BPMNDecorateUtil.exportPerformancetoBPMN(bpmn,  Performanceresult, placeFlowCollection,net);
-			
-			 
+
+			BPMNDiagram bpmn = connection2.getObjectWithRole(BPMNtoPNConnection.BPMN);
+			Collection< Place>  placeFlowCollection = connection2.getObjectWithRole(BPMNtoPNConnection.PLACEFLOWCONNECTION);
+
+
+			return BPMNDecorateUtil.exportPerformancetoBPMN(bpmn,  Performanceresult, placeFlowCollection,net);
+
+
 
 		} catch (ConnectionCannotBeObtained e) {
 			// No connections available

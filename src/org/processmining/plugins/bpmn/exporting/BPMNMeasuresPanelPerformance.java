@@ -152,7 +152,6 @@ public class BPMNMeasuresPanelPerformance extends JPanel {
 
 
 	public void savefile() {
-		// TODO Auto-generated method stub
 		JFileChooser saveDialog = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(
 		        "XPDL", "xpdl");
@@ -188,7 +187,6 @@ public class BPMNMeasuresPanelPerformance extends JPanel {
 
 
 	public void repainone(PerformanceResult performanceResult) {
-		// TODO Auto-generated method stub
 		Petrinet netx = PetrinetFactory.clonePetrinet(net);
 		
 		PetriNetDrawUtil.drawperformancenet(netx, performanceResult.getList(), performanceResult.getMaparc());

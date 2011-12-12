@@ -373,7 +373,6 @@ public class BPMNtoPN {
 		try {
 			layout = c.getConnectionManager().getFirstConnection(GraphLayoutConnection.class, c, net);
 		} catch (ConnectionCannotBeObtained e) {
-			// TODO Auto-generated catch block
 			/*
 			 * Get a jgraph for this graph.
 			 */
