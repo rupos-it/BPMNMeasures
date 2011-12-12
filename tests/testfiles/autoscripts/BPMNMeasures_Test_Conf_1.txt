@@ -1,0 +1,52 @@
+print("TESTCASE: Conformance Test1");
+
+
+String testFileRoot = System.getProperty("test.testFileRoot", "./tests/testfiles");
+
+//----EXAMPLE SCRIPT FOR OPENING LOG-------
+
+// 1) -------------------------------------------------------------
+
+String filexpdl = "Residency.xpdl";
+
+String filelog = "wsfm2.mxml";
+
+print("path: "+testFileRoot);
+print("Reading file: "+filexpdl);
+print("Reading file: "+filelog);
+
+xpdl = import_bpmn_model_from_xpdl_2_1_file(testFileRoot+"/"+filexpdl);
+junit.framework.Assert.assertNotNull("xpdl file is not null", xpdl);
+
+petrinet = bpmn_to_petrinet(xpdl)[0];
+junit.framework.Assert.assertNotNull("PN is not null", petrinet);
+
+log = open_xes_log_file(testFileRoot+"/"+filelog);
+junit.framework.Assert.assertNotNull("Log file is not null", log);
+
+print("Log"+log);
+print("PN "+petrinet);
+
+print("Conformance");
+
+result = pn_conformace_analysis(log,petrinet);
+junit.framework.Assert.assertNotNull("Conformance is not null", result);
+
+print("Result"+result);
+
+ metrics = bpmnmanalisysdetailsintometricsconformance(result);
+newbpmn= bpmnmeasureswithanalisysdetails(result);
+
+visualize_bpmn_metrics(metrics);
+
+String exportFileName = testFileRoot+"/"+filexpdl+"_Conf_exported.xpdl";
+File exportFile = new File(exportFileName);
+print("Exporting file: "+exportFile);
+
+xpdl_export_bussines_notation_with_artifact(newbpmn,exportFile);
+junit.framework.Assert.assertTrue("BPMN with_artifact file successfully exported: "+exportFileName, exportFile.exists());
+junit.framework.Assert.assertTrue("BPMN with_artifact file successfully deleted: "+exportFileName, exportFile.delete());
+
+junit.framework.Assert.assertTrue("Conformace success: "+result, result!=null);
+junit.framework.Assert.assertTrue("Conformace success: "+newbpmn, newbpmn!=null);
+junit.framework.Assert.assertTrue("Conformace success: "+metrics, metrics!=null);

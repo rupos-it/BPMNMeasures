@@ -1,0 +1,23 @@
+print("TESTCASE: Import bpmn Test1");
+
+
+String testFileRoot = System.getProperty("test.testFileRoot", "./tests/testfiles");
+
+//----EXAMPLE SCRIPT FOR OPENING LOG-------
+
+// 1) -------------------------------------------------------------
+
+String file = "Residency.bpmn";
+
+
+print("Reading file: "+file);
+bpmn = import_bpmn_model_from_bpmn_2_0_file(testFileRoot+"/"+file);
+junit.framework.Assert.assertNotNull("BPMN file is not null", bpmn);
+
+petrinet = bpmn_to_petrinet(bpmn)[0];
+junit.framework.Assert.assertNotNull("PN is not null", petrinet);
+
+ add_artificial_end_transition_variant(petrinet);
+ 
+ add_artificial_end_transition_variant(petrinet,"End");
+

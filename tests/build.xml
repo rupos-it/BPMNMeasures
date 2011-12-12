@@ -1,32 +1,23 @@
-<project name="NewPackage.test" default="check">
-
-	<!-- retrieve basedir of this check script (DO NOT MODIFY) -->
-	<dirname property="test.basedir" file="${ant.file.NewPackage.test}" />
-
-	<!-- location of plugin code, binaries, and test files (can be modified) -->
-	<property name="home" location=".." />
-	<property name="bin" location="${home}/bindist" />
-	<property name="src" location="${home}/src" />
-
-	<!-- location of test code, binaries, and test files (can be modified) -->
-	<property name="dir.test-src" location="${test.basedir}/src-test" />
-	<property name="dir.test-bin" location="${test.basedir}/bin-test" />
-	<property name="dir.testfiles" location="${test.basedir}/testfiles" />
+<project name="${test.projectname}" default="check">
 	
-	<!-- location of test results (can be modified) -->
-	<property name="dir.coveragereport.html" location="${test.basedir}/cover-html" />
-	<property name="dir.coveragereport.xml" location="${test.basedir}/cover-xml" />
+	<!-- retrieve basedir of this check script (DO NOT MODIFY) -->
+	<dirname property="test.basedir" file="${ant.file}" />
 
+	<property file="${test.basedir}/test.properties" />
+
+	
 	<!-- For which classes shall we generate a coverage report?
 	     Define both, source files and compiled classes.                          -->
-   <fileset id="src.coveragereport" dir="${src}">
+    <fileset id="src.coveragereport" dir="${src}">
 		<!-- create coverage report for ProM plugins (can be modified) -->
-       <include name="org/processmining/**/*.java" />
-   </fileset>
+        <include name="org/processmining/**/*.java" />
+    </fileset>
 	<fileset id="classes.coveragereport" dir="${bin}">
 		<!-- create coverage report for ProM plugins (can be modified) -->
         <include name="org/processmining/**/*.class"/>
-		
+		<!-- do not create coverage report for UI methods -->
+    	<exclude name="org/processmining/**/*_UI.class" />
+
 		<!-- do not create coverage report for test environment (DO NOT MODIFY) -->
 	    <exclude name="**/test/*.class"/>
 	</fileset>
@@ -46,12 +37,12 @@
 	
 	<!-- include compiled classes, libraries, and test-case files -->
 	<path id="classpath.run">
-		<pathelement location="${bin}"/>
 		<!-- unconmment these lines if the test shall be run against the packaged jars of the build
-		<fileset dir="${home}/dist/">
-        	<include name="**/*.jar"/>
-      	</fileset>
+		<pathelement location="${bin}"/>
       	-->
+		<fileset dir="${home}/dist/">
+        	<include name="${package.name}.jar"/>
+      	</fileset>
       	<fileset dir="${home}/lib/">
         	<include name="**/*.jar"/>
       	</fileset>
@@ -61,7 +52,7 @@
 	
 	<!-- include JUnit to execute unit tests -->
 	<path id="classpath.test">
-	<pathelement location="${test.basedir}/libs-external/junit-4.8.1.jar" />
+		<pathelement location="${test.basedir}/libs-external/junit-4.8.1.jar" />
 		<path refid="classpath.run" />
   	</path>
 	
@@ -101,7 +92,7 @@
 	</target>
          		
 	<!-- run tests -->
-	<target name="check" depends="build-test,prepare-cobertura">
+	<target name="check" depends="svn-clean,build-test,prepare-cobertura">
 	
 		<!-- integration tests of invoking plugins in ProM -->
 	    <junit fork="true" dir="${home}" includeantruntime="yes" >
@@ -121,10 +112,19 @@
 	    	
 		  <!-- JUnit: set output format -->
 	      <formatter type="xml"/>
+	      <formatter type="plain"/>
 
 	      <!-- JUnit: test cases to run -->
     	  <sysproperty key="test.testFileRoot" path="${dir.testfiles}"/>
-	      <test name="org.processmining.tests.newpackage.NewPackageTest" todir="${test.basedir}" />
+	      <sysproperty key="test.testScriptRoot" path="${dir.autoscripts}"/>
+		  <sysproperty key="test.inclassTestsAt" value="${dir.inclassTests}"/>
+    	  <batchtest fork="yes" todir="${test.basedir}">
+    	    <fileset dir="${dir.test-src}">
+    	      <include name="${test.default}"/>
+    	    </fileset>
+    	  </batchtest>
+		  <!-- add other tests: -->
+		  <!-- test name="org.processmining.tests.package.TestClass" todir="${test.basedir}" / -->
 	    </junit>
 		
 		<!-- Cobertura: generate HTML coverage report -->
@@ -152,6 +152,7 @@
 		<delete failonerror="false">
 			<fileset dir="${test.basedir}">
 				<include name="TEST-*.xml"/>
+				<include name="TEST-*.txt"/>
 			</fileset>
 		</delete>
 	</target>
