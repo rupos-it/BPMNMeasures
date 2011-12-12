@@ -17,6 +17,7 @@ import javax.swing.SwingConstants;
 
 import org.jgraph.graph.GraphConstants;
 import org.jgraph.graph.AttributeMap.SerializablePoint2D;
+import org.processmining.contexts.uitopia.UIPluginContext;
 import org.processmining.contexts.uitopia.annotations.UITopiaVariant;
 
 import org.processmining.framework.connections.ConnectionCannotBeObtained;
@@ -98,9 +99,9 @@ public class BPMNtoPN {
 		translateGateway(bpmn, flowMap, net);
 
 		translateEvent(bpmn, flowMap, net, marking);
-
-		layoutcreate(c,net);
-
+		if(c instanceof UIPluginContext ){
+			layoutcreate(c,net);
+		}
 		String errorLog = error.toString();
 
 		Object[] objects = new Object[3];
@@ -351,7 +352,7 @@ public class BPMNtoPN {
 					}
 				}else{
 					//è un evento di confine
-					
+
 				}
 
 			}
