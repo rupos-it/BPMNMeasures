@@ -30,7 +30,7 @@ import org.processmining.plugins.petrinet.replay.util.ReplayAnalysisConnection;
 
 
 
-@Plugin(name = "BPMNMeasureswithAnalisysDetails", parameterLabels = {  "TotalConformanceResult" , "TotalPerformanceResult" , "ConformanceResult" , "Petrinets", "PerformanceResult"}, returnLabels = { "BPMN  traslate" }, returnTypes = {
+@Plugin(name = "BPMN Measures with Analisys Details", parameterLabels = {  "TotalConformanceResult" , "TotalPerformanceResult" , "ConformanceResult" , "Petrinets", "PerformanceResult"}, returnLabels = { "BPMN  traslate" }, returnTypes = {
 		BPMNDiagramExt.class }, userAccessible = true)
 		public class MeasuresIntoBPMNPlugin {
 	
