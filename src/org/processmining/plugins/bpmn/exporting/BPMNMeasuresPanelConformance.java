@@ -153,7 +153,6 @@ public class BPMNMeasuresPanelConformance extends JPanel{
 
 
 	public void savefile() {
-		// TODO Auto-generated method stub
 		JFileChooser saveDialog = new JFileChooser();
 		FileNameExtensionFilter filter = new FileNameExtensionFilter(
 		        "XPDL", "xpdl");
@@ -182,7 +181,6 @@ public class BPMNMeasuresPanelConformance extends JPanel{
 
 
 	public void updateone(int i) {
-		// TODO Auto-generated method stub
 		Petrinet netx = PetrinetFactory.clonePetrinet(net);
 		PetriNetDrawUtil.drawconformance(netx,tovisualize.getList().get(i));
 		 bpmnext = BPMNDecorateUtil.exportConformancetoBPMN(bpmn,net, tovisualize.getList().get(i),placeFlowCollection);
@@ -208,7 +206,6 @@ public class BPMNMeasuresPanelConformance extends JPanel{
 
 
 	public void updateall() {
-		// TODO Auto-generated method stub
 		Petrinet netx = PetrinetFactory.clonePetrinet(net);
 		PetriNetDrawUtil.drawconformance(netx,tovisualize.getTotal());
 		bpmnext = BPMNDecorateUtil.exportConformancetoBPMN(bpmn,net, tovisualize.getTotal(),placeFlowCollection);

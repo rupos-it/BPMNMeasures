@@ -35,7 +35,8 @@ import org.processmining.plugins.petrinet.replay.util.ReplayAnalysisConnection;
 public class MeasuresIntoBPMNPlugin {
 
 	private BPMNDiagram bpmnext;
-
+	
+	
 	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
 	@PluginVariant(requiredParameterLabels = { 0 })
 	public Object exportBPMNexportXPDL(PluginContext context, TotalConformanceResult totalconformanceresult) throws Exception {
