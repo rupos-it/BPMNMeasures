@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.Vector;
@@ -552,9 +553,11 @@ public class BPMNtoPN {
 			Collection<String> maperror) {
 		//every object is on a path from a start event or an exception event to an end event
 		for(BPMNNode a : bpmn.getNodes()){
+			List<BPMNNode> listnodeatttoend= new LinkedList<BPMNNode>();
+			List<BPMNNode> listnodeatttostart= new LinkedList<BPMNNode>();
 			if(!( a instanceof Swimlane)){
-				pathFromNodeToEnd(a,maperror,a);
-				pathFromNodeToStart(a,maperror,a);
+				pathFromNodeToEnd(a,maperror,a,listnodeatttoend);
+				pathFromNodeToStart(a,maperror,a,listnodeatttostart);
 			}
 
 		}
@@ -562,7 +565,8 @@ public class BPMNtoPN {
 	}
 
 	private void pathFromNodeToStart(BPMNNode a, Collection<String> maperror,
-			BPMNNode c) {
+			BPMNNode c, List<BPMNNode> listnodeatttostart) {
+		if(!listnodeatttostart.contains(a)){
 		Collection<BPMNEdge<? extends BPMNNode, ? extends BPMNNode>> edges = a.getGraph().getInEdges(a);
 		if(!edges.isEmpty()){
 			for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> edge : edges){
@@ -571,13 +575,15 @@ public class BPMNtoPN {
 					Event isend = (Event) b;
 					if(isend.getEventTrigger()==null){isend.setEventTrigger(EventTrigger.NONE);}
 					if((isend.getEventType()==EventType.START && isend.getEventTrigger()==EventTrigger.NONE)||(isend.getEventType()==EventType.INTERMEDIATE&& isend.getEventTrigger()==EventTrigger.ERROR)){
+						listnodeatttostart.add(a);
 						break;
 					}
 				}
 				if(b==null){
 					maperror.add("The path of element [["+c.getLabel()+"]] don't contain start event element");
 				}
-				pathFromNodeToStart(b,maperror, c); ///vero??
+				listnodeatttostart.add(a);
+				pathFromNodeToStart(b,maperror, c,listnodeatttostart); ///vero??
 			}
 
 		}else{
@@ -589,11 +595,13 @@ public class BPMNtoPN {
 				}
 			}else maperror.add("The path of element [["+c.getLabel()+"]] don't contain start event element");
 
-		}	
+		}
+		}
 
 	}
 
-	private void pathFromNodeToEnd(BPMNNode a, Collection<String> maperror, BPMNNode c) {
+	private void pathFromNodeToEnd(BPMNNode a, Collection<String> maperror, BPMNNode c, List<BPMNNode> listnodeatt) {
+		if(!listnodeatt.contains(a)){
 		Collection<BPMNEdge<? extends BPMNNode, ? extends BPMNNode>> edges = a.getGraph().getOutEdges(a);
 		if(!edges.isEmpty()){
 			for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> edge : edges){
@@ -602,13 +610,15 @@ public class BPMNtoPN {
 					Event isend = (Event) b;
 					if(isend.getEventTrigger()==null){isend.setEventTrigger(EventTrigger.NONE);}
 					if(isend.getEventType()==EventType.END && isend.getEventTrigger()==EventTrigger.NONE){
+						listnodeatt.add(a);
 						break;
 					}
 				}
 				if(b==null){
 					maperror.add("The path of element [["+c.getLabel()+"]] don't contain end event element");
 				}
-				pathFromNodeToEnd(b,maperror, c);
+				listnodeatt.add(a);
+				pathFromNodeToEnd(b,maperror, c,listnodeatt);
 			}
 		}else{
 			if(a instanceof Event){
@@ -619,7 +629,8 @@ public class BPMNtoPN {
 				}
 			}else maperror.add("The path of element [["+c.getLabel()+"]] don't contain end event element");
 
-		}		
+		}	
+		}
 
 	}
 
