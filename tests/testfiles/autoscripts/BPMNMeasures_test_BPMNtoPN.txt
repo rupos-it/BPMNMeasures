@@ -1,0 +1,22 @@
+print("TESTCASE: BPMN to PN Test");
+
+
+String testFileRoot = System.getProperty("test.testFileRoot", "./tests/testfiles");
+
+//----EXAMPLE SCRIPT FOR OPENING LOG-------
+
+// 1) -------------------------------------------------------------
+
+String filexpdl = "fixbug.xpdl";
+
+
+
+print("path: "+testFileRoot);
+print("Reading file: "+filexpdl);
+
+
+xpdl = import_bpmn_model_from_xpdl_2_1_file(testFileRoot+"/"+filexpdl);
+junit.framework.Assert.assertNotNull("xpdl file is not null", xpdl);
+
+petrinet = bpmn_to_petrinet(xpdl)[0];
+junit.framework.Assert.assertNotNull("PN is not null", petrinet);
