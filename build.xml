@@ -128,13 +128,13 @@
 							version="${version}" 
 							os="all" 
 							url="http://www.promtools.org/prom6/packages/${project}/${project}-${version}-${os}.zip"
-							desc="Artifact Modeling"
-							org="Dipartimento di Informatica University of Pisa" 
-							license="BPMNMeasures" 
+							desc="BPMN to Petrinets and roolback"
+							org="Department of Computer Science University of Pisa" 
+							license="LGPL" 
 							author="R. Guanciale {guancio@gmail.com}, G. Spagnolo {spagnolo@di.unipi.it} et al. "
 							auto="false"
 							hasPlugins="true"
-							logo="http://www.promtools.org/prom6/packages/6.1/prom_subtitle_hat_300.png"
+							logo="http://compass2.di.unipi.it/Didattica/img/cheru.png"
 						>
 							<dependency name="Log"/>
 							<dependency name="BPMN"/>
