@@ -349,18 +349,26 @@ public class BPMNDecorateUtil {
 				if(activity!=null){
 					String unsoundallert = "";
 					for (Place p : remaning.baseSet()) {
+
 						if (p.getLabel().equals(name)) {
 							unsoundallert += ret + " Task missing competition\n";
-						} else if (p.getLabel().startsWith(name) && !tname.endsWith("start") ) {
-							unsoundallert += ret + " Branch interrupted executions\n";
+						} else if(p.getLabel().contains("#")){
+							String startname = p.getLabel().substring(0, p.getLabel().indexOf("#"));
+							if (startname.equals(name) && !tname.endsWith("start") ) {
+								//unsoundallert += ret + " Branch interrupted executions\n";
+								
+								archibpmnwitherrorconformance.put(p.getLabel(), " Branch interrupted executions");
+							}
 						}
 					}
 					for (Place p : missing.baseSet()) {
 						if (p.getLabel().equals(name)&& tname.endsWith("start")) {
 							unsoundallert += ret + " Task internal failures";
-						}
-						if(p.getLabel().endsWith(name)&& tname.endsWith("start")){
-							unsoundallert += ret + " Task unsound executions\n";
+						}else if(p.getLabel().contains("#")){
+							String endname = p.getLabel().substring( p.getLabel().indexOf("#")+1, p.getLabel().length());
+							if(endname.equals(name)&& tname.endsWith("start")){
+								unsoundallert += ret + " Task unsound executions\n";
+							}
 						}
 					}
 					if (activity != null && unsoundallert!="") {
@@ -433,8 +441,8 @@ public class BPMNDecorateUtil {
 		for (Flow f : bpmn.getFlows()) {
 			String from = f.getSource().getLabel();
 			String to = f.getTarget().getLabel();
-			if (ArchiAttivatiBPMN.containsKey(from + to)) {
-				Integer i = ArchiAttivatiBPMN.get(from + to);
+			if (ArchiAttivatiBPMN.containsKey(from +"#"+ to)) {
+				Integer i = ArchiAttivatiBPMN.get(from +"#"+ to);
 				if (i > 0) {
 					f.getAttributeMap().put(AttributeMap.LABEL, i.toString());
 					f.getAttributeMap().put(AttributeMap.TOOLTIP, i.toString());
@@ -443,14 +451,14 @@ public class BPMNDecorateUtil {
 
 			}
 			// metto eventuali errore sul arco di fork
-			if (archibpmnwitherrorconformance.containsKey(from + to)) {
+			if (archibpmnwitherrorconformance.containsKey(from +"#"+to)) {
 
-				String flowerr = archibpmnwitherrorconformance.get(from + to);
+				String flowerr = archibpmnwitherrorconformance.get(from +"#"+ to);
 				f.getAttributeMap().remove(AttributeMap.TOOLTIP);
 
 				f.getAttributeMap().put(AttributeMap.TOOLTIP, flowerr);
-				f.getAttributeMap().remove(AttributeMap.SHOWLABEL);
-				f.getAttributeMap().put(AttributeMap.SHOWLABEL, true);
+				//f.getAttributeMap().remove(AttributeMap.SHOWLABEL);
+				//f.getAttributeMap().put(AttributeMap.SHOWLABEL, true);
 				f.getAttributeMap().put(AttributeMap.EDGECOLOR, Color.RED);
 
 			}

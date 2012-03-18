@@ -88,7 +88,7 @@ public class BPMNtoPN {
 
 		//gli archi del diagramma BPMN diventano piazze della rete Petri
 		for (Flow g : bpmn.getFlows()) {
-			String f = g.getSource().getLabel();
+			String f = g.getSource().getLabel()+"#";
 			String z = g.getTarget().getLabel();
 
 			Place p = net.addPlace(f + z, this.subNet);
@@ -295,9 +295,10 @@ public class BPMNtoPN {
 			if (e.getEventType().equals(EventType.START) && e.getEventTrigger().equals(EventTrigger.NONE)) {
 
 				// Place p = new Place(e.getLabel(), net);
+				String name = e.getLabel().toUpperCase();
 				Place p = net.addPlace("p"+e.getLabel(), this.subNet);
 
-				Transition t = net.addTransition("t_"+e.getLabel(), this.subNet);
+				Transition t = net.addTransition("t_"+name, this.subNet);
 				t.setInvisible(true);
 				net.addArc(p, t, 1, this.subNet);
 				marking.add(p, 1);
