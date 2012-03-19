@@ -2,6 +2,7 @@ package org.processmining.plugins.bpmn.exporting;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -19,6 +20,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
+import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
@@ -27,6 +29,9 @@ import javax.swing.SwingConstants;
 
 
 import javax.swing.table.AbstractTableModel;
+import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.TableCellRenderer;
+import javax.swing.table.TableColumn;
 
 import org.processmining.framework.util.ui.scalableview.ScalableComponent;
 import org.processmining.framework.util.ui.scalableview.ScalableViewPanel;
@@ -43,7 +48,7 @@ import com.fluxicon.slickerbox.factory.SlickerDecorator;
 import com.fluxicon.slickerbox.factory.SlickerFactory;
 
 public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMotionListener, ViewInteractionPanel {
-	
+
 	/**
 	 * 
 	 */
@@ -51,9 +56,9 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 	/**
 	 * 
 	 */
-	
-	
-	
+
+
+
 	protected SlickerFactory factory = SlickerFactory.instance();
 	protected SlickerDecorator decorator = SlickerDecorator.instance();
 	private JComponent component;
@@ -61,8 +66,8 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 	private String panelName;
 	private TotalConformanceResult TCR;
 	private BPMNMeasuresPanelConformance panel;
-	
-	
+
+
 	public TabTraceConfPanel(ScalableViewPanel panels, String panelName, TotalConformanceResult tcr, BPMNMeasuresPanelConformance bpanel){
 		super(new BorderLayout());
 
@@ -79,7 +84,7 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 		panel=bpanel;
 		painttabtrace();
 	}
-	
+
 
 	private void painttabtrace() {
 		this.setBackground(new Color(30, 30, 30));
@@ -90,11 +95,13 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 
 
 			private static final long serialVersionUID = -3512537393802566662L;
-	
+
 
 			@Override
 			public Object getValueAt(int rowIndex, int columnIndex) {
+
 				return TCR.getList().get(rowIndex).getTracename();//rowIndex;
+
 			}
 
 			@Override
@@ -120,6 +127,22 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 				return false; 
 			}
 		});
+		tab.getColumnModel().getColumn(0).setCellRenderer(new DefaultTableCellRenderer() {
+			public Component getTableCellRendererComponent (JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) 
+			{
+				Component cell = super.getTableCellRendererComponent (table, value, isSelected, hasFocus, row, column);
+				if (TCR.getList().get(row).getMissingMarking().isEmpty() &&
+						TCR.getList().get(row).getMapTransition().isEmpty() &&
+						TCR.getList().get(row).getConformance()>0.92){
+					cell.setBackground( Color.gray );
+				}else{
+				
+					cell.setBackground( Color.red );
+				}
+					
+				return cell;
+
+			}});
 		jp.setLayout(new BoxLayout(jp, BoxLayout.X_AXIS));
 		jp1.setLayout(new BoxLayout(jp1, BoxLayout.Y_AXIS));
 		JScrollPane scrollpane = new JScrollPane(tab); 
@@ -141,15 +164,15 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 		JButton update  = new AutoFocusButton("Update");
 		JButton	updateall  = new AutoFocusButton("UpdateAll");
 		JButton saveButton = new SlickerButton("save as BPMN...");
-		
+
 		update.setOpaque(false);
 		updateall.setOpaque(false);
 		saveButton.setOpaque(false);
-		
+
 		update.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		updateall.setFont(new Font("Monospaced", Font.PLAIN, 12));
 		saveButton.setFont(new Font("Monospaced", Font.PLAIN, 12));
-		
+
 		saveButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				panel.savefile();
@@ -159,7 +182,7 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 		jp.add(update,BorderLayout.NORTH);
 		jp.add(updateall,BorderLayout.WEST);
 		jp.add(saveButton,BorderLayout.EAST);
-		
+
 		jp1.add(jp);
 		jp1.add(scrollpane,BorderLayout.SOUTH);
 
@@ -184,13 +207,13 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 
 			}
 		});
-		
-		
-		
+
+
+
 		this.add(jp1, BorderLayout.WEST);
 		this.setOpaque(false);
 
-	
+
 	}
 
 
@@ -256,7 +279,7 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 	}
 
 	public void updated() {
-		
+
 	}
 
 	public double getHeightInView() {
@@ -268,7 +291,7 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 	}
 
 	public void willChangeVisibility(boolean to) {
-		
+
 	}
 
 	public void setSize(int width, int height) {
