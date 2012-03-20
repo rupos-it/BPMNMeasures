@@ -375,7 +375,7 @@ public class BPMNDecorateUtil {
 					for (Place p : remaning.baseSet()) {
 
 						if (p.getLabel().equals(name)&& tname.endsWith("start")) {
-							unsoundallert += ret + " Task missing competition\n";
+							unsoundallert += ret + " Task missing completion\n";
 						} else if(p.getLabel().contains("#")){
 							String startname = p.getLabel().substring(0, p.getLabel().indexOf("#"));
 							if (startname.equals(name) && !tname.endsWith("start") ) {
