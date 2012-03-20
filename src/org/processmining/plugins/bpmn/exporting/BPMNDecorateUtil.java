@@ -2,6 +2,8 @@ package org.processmining.plugins.bpmn.exporting;
 
 import java.awt.Color;
 
+import java.sql.Time;
+import java.sql.Timestamp;
 import java.util.Collection;
 import java.util.HashMap;
 
@@ -111,13 +113,15 @@ public class BPMNDecorateUtil {
 					PerformanceData ps = getPerfResult(preplace, Performanceresult.getList());
 					if (ps != null) {
 						if (t.getLabel().endsWith("start")) {
-							if (ps.getWaitTime() > 0) {
-								text = "Activation Time: " + ps.getWaitTime()
+							if (ps.getWaitTime() >= 0) {
+
+
+								text = "Activation Time: " + secondsToString((long) ps.getWaitTime())
 										+ "<br/>";
 							}
 						} else if (t.getLabel().endsWith("complete")) {
-							if (ps.getWaitTime() > 0) {
-								text = "Execution Time: " + ps.getWaitTime()
+							if (ps.getWaitTime() >= 0) {
+								text = "Execution Time: " + secondsToString((long) ps.getWaitTime())
 										+ "<br/>";
 
 							}
@@ -218,6 +222,26 @@ public class BPMNDecorateUtil {
 
 		}
 
+	}
+
+	private static String secondsToString(long elapsedTime){
+		System.out.println(""+elapsedTime);
+		String format = String.format("%%0%dd", 2);  
+		elapsedTime = elapsedTime / 1000;  
+		String seconds = String.format(format, elapsedTime % 60);  
+		String minutes = String.format(format, (elapsedTime % 3600) / 60);  
+		String hours = String.format(format, (elapsedTime / 3600)%24); 
+
+		String day = String.format(format, (elapsedTime / 86400));  // % 30
+		
+		String stime =  hours + ":" + minutes + ":" + seconds; 
+		if(!day.equals("00"))
+			 stime = "Day: "+ day +" "+ stime;
+		
+		return stime;  
+		//int day = (int)(time/86400) % 30;
+		//String sday = (day<10 ? "0" : "")+ day;
+		//return new String("Day "+sday+" "+ hoursStr + ":" + minutesStr + ":" + secondsStr);
 	}
 
 	private static String calcolasojourntime(PetrinetNode p,
@@ -350,13 +374,13 @@ public class BPMNDecorateUtil {
 					String unsoundallert = "";
 					for (Place p : remaning.baseSet()) {
 
-						if (p.getLabel().equals(name)) {
+						if (p.getLabel().equals(name)&& tname.endsWith("start")) {
 							unsoundallert += ret + " Task missing competition\n";
 						} else if(p.getLabel().contains("#")){
 							String startname = p.getLabel().substring(0, p.getLabel().indexOf("#"));
 							if (startname.equals(name) && !tname.endsWith("start") ) {
 								//unsoundallert += ret + " Branch interrupted executions\n";
-								
+
 								archibpmnwitherrorconformance.put(p.getLabel(), " Branch interrupted executions");
 							}
 						}
