@@ -174,8 +174,8 @@ public class BPMNDecorateUtil {
 		for (Flow f : bpmn.getFlows()) {
 			String from = f.getSource().getLabel();
 			String to = f.getTarget().getLabel();
-			if (archibpmnwithsyncperformance.containsKey(from + to)) {
-				String flowsync = archibpmnwithsyncperformance.get(from + to);
+			if (archibpmnwithsyncperformance.containsKey(from +"#"+ to)) {
+				String flowsync = archibpmnwithsyncperformance.get(from +"#"+ to);
 				f.getAttributeMap().remove(AttributeMap.TOOLTIP);
 
 				f.getAttributeMap().put(AttributeMap.TOOLTIP, flowsync);
@@ -184,8 +184,8 @@ public class BPMNDecorateUtil {
 				f.getAttributeMap().put(AttributeMap.EDGECOLOR, Color.RED);
 
 			}
-			if (ArchiAttivatiBPMN.containsKey(from + to)) {
-				Integer i = ArchiAttivatiBPMN.get(from + to);
+			if (ArchiAttivatiBPMN.containsKey(from+"#"+ to)) {
+				Integer i = ArchiAttivatiBPMN.get(from +"#"+ to);
 				f.getAttributeMap().remove(AttributeMap.SHOWLABEL);
 				f.getAttributeMap().put(AttributeMap.SHOWLABEL, true);
 				f.getAttributeMap().put(AttributeMap.LABEL, i.toString());
