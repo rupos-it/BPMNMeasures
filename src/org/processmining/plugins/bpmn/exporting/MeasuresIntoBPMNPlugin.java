@@ -99,6 +99,7 @@ public class MeasuresIntoBPMNPlugin {
 		} catch (ConnectionCannotBeObtained e) {
 			// No connections available
 			context.log("Connection does not exist", MessageLevel.DEBUG);
+            context.getFutureResult(0).cancel(true);
 
 		}
 
@@ -135,6 +136,7 @@ public class MeasuresIntoBPMNPlugin {
 		} catch (ConnectionCannotBeObtained e) {
 			// No connections available
 			context.log("Connection does not exist", MessageLevel.DEBUG);
+            context.getFutureResult(0).cancel(true);
 			return null;
 		}
 

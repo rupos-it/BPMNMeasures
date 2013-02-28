@@ -5,20 +5,22 @@
 .project
 .settings
 bin
-javascrips/conformance.html
+
 bindist
-prom5_log_files
 
-PetriNetReplayAnalysis/dist/
 
-BPMNMeasures/dist/
 
-examples
+
+dist/
+
 cover-xml
-prom61_origin
-rupos_context
+
 cover-html
 cobertura.ser
 bin-test
 bin-test-instrument
 TEST-org.processmining*
+tests/libs-external
+stdlib/
+
+packagelib/
