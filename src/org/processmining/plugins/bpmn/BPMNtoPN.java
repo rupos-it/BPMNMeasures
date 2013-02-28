@@ -75,6 +75,9 @@ public class BPMNtoPN {
 		Collection<String> error = this.isWellFormed(bpmn);
 
 
+	
+		
+		
 		// final	LinkedHashMap<Place, Flow> placeMap = new LinkedHashMap<Place, Flow>();
 		LinkedHashMap<Flow, Place> flowMap = new LinkedHashMap<Flow, Place>();
 
@@ -83,9 +86,9 @@ public class BPMNtoPN {
 		Marking marking = new Marking();
 
 
-		//gli archi del diagramma BPMN diventano piazze della rete BPMN
+		//gli archi del diagramma BPMN diventano piazze della rete Petri
 		for (Flow g : bpmn.getFlows()) {
-			String f = g.getSource().getLabel();
+			String f = g.getSource().getLabel()+"#";
 			String z = g.getTarget().getLabel();
 
 			Place p = net.addPlace(f + z, this.subNet);
@@ -292,9 +295,10 @@ public class BPMNtoPN {
 			if (e.getEventType().equals(EventType.START) && e.getEventTrigger().equals(EventTrigger.NONE)) {
 
 				// Place p = new Place(e.getLabel(), net);
+				String name = e.getLabel().toUpperCase();
 				Place p = net.addPlace("p"+e.getLabel(), this.subNet);
 
-				Transition t = net.addTransition("t_"+e.getLabel(), this.subNet);
+				Transition t = net.addTransition("t_"+name, this.subNet);
 				t.setInvisible(true);
 				net.addArc(p, t, 1, this.subNet);
 				marking.add(p, 1);

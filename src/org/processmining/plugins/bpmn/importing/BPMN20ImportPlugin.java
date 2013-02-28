@@ -41,6 +41,7 @@ public class BPMN20ImportPlugin extends XpdlImportBpmn {
 
 		File in = this.importbpmn(input);
 		if(in == null){
+            context.getFutureResult(0).cancel(true);
 			return null;
 		}
 		FileInputStream newinput = new FileInputStream(in);
@@ -81,6 +82,7 @@ public class BPMN20ImportPlugin extends XpdlImportBpmn {
 		}
 		catch (Exception e) {
 			e.printStackTrace( );
+            
 			return null;
 		}
 	}

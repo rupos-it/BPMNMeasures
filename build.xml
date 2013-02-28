@@ -141,7 +141,6 @@
 							<dependency name="LogDialog"/>
 							<dependency name="PetriNetReplayAnalysis"/>
 							<dependency name="PetriNets"/>
-							<dependency name="PetriNetReplayer"/>
 
 						</package>
 					</packages>
