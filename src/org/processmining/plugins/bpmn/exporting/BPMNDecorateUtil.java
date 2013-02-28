@@ -373,12 +373,6 @@ public class BPMNDecorateUtil {
 				if(activity!=null){
 					String unsoundallert = "";
 					for (Place p : remaning.baseSet()) {
-<<<<<<< HEAD
-						if (p.getLabel().equals(name)) {
-							unsoundallert += ret + " Task missing competition\n";
-						} else if (p.getLabel().startsWith(name) && !tname.endsWith("start") ) {
-							unsoundallert += ret + " Branch interrupted executions\n";
-=======
 
 						if (p.getLabel().equals(name)&& tname.endsWith("start")) {
 							unsoundallert += ret + " Task missing completion\n";
@@ -389,7 +383,6 @@ public class BPMNDecorateUtil {
 
 								archibpmnwitherrorconformance.put(p.getLabel(), " Branch interrupted executions");
 							}
->>>>>>> master
 						}
 					}
 					for (Place p : missing.baseSet()) {
