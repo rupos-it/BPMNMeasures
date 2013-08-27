@@ -8,7 +8,7 @@
 		<property name="dist" location="dist" />
 		<property name="xslt" location="xslt" />
 		<property name="release" location="latestrelease" />
-		<property name="version" value="6.1.${env.BUILD_NUMBER}" />
+		<property name="version" value="6.3.${env.BUILD_NUMBER}" />
 		<property name="project" value="BPMNMeasures" />
 
 		<!-- Set the os to win32, win64, lin32, lin64, mac, or all -->
@@ -136,12 +136,14 @@
 							hasPlugins="true"
 							logo="http://compass2.di.unipi.it/Didattica/img/cheru.png"
 						>
-							<dependency name="Log"/>
 							<dependency name="BPMN"/>
+							<dependency name="InteractiveVisualization"/>
+							<dependency name="Log"/>
 							<dependency name="LogDialog"/>
+							<dependency name="LogMerge"/>
 							<dependency name="PetriNetReplayAnalysis"/>
+							<dependency name="PetriNetReplayer"/>
 							<dependency name="PetriNets"/>
-
 						</package>
 					</packages>
 				</echoxml>
