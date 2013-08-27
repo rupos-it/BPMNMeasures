@@ -63,7 +63,6 @@
 	<classpathentry kind="lib" path="packagelib/PetriNets.jar"/>
 	<classpathentry kind="lib" path="packagelib/BPMN.jar"/>
 	<classpathentry kind="lib" path="lib/saxon9he.jar"/>
-	<classpathentry kind="lib" path="packagelib/PetriNetReplayer.jar"/>
 	<classpathentry kind="lib" path="packagelib/InteractiveVisualization.jar"/>
 	<classpathentry kind="lib" path="stdlib/EfficientStorage.jar"/>
 	<classpathentry kind="output" path="bin"/>

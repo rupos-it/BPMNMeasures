@@ -27,12 +27,12 @@ import org.processmining.plugins.xpdl.importing.XpdlImportBpmn;
 
 
 
-@Plugin(name = "Import BPMN model from BPMN 2.0 file", parameterLabels = { "Filename" }, returnLabels = { "BPMN diagram" }, returnTypes = { BPMNDiagram.class })
-@UIImportPlugin(description = "BPMN 2.0 files", extensions = { "bpmn" })
+@Plugin(name = "Import BPMN model from BPMN 2.0 file with xslt", parameterLabels = { "Filename" }, returnLabels = { "BPMN diagram" }, returnTypes = { BPMNDiagram.class })
+@UIImportPlugin(description = "BPMN 2 files ", extensions = { "bpmn" })
 public class BPMN20ImportPlugin extends XpdlImportBpmn {
 
 	protected FileFilter getFileFilter() {
-		return new FileNameExtensionFilter("BPMN 2.0 files", "bpmn");
+		return new FileNameExtensionFilter("BPMN 2 files", "bpmn");
 	}
 
 

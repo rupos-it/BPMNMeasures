@@ -7,11 +7,20 @@ String testFileRoot = System.getProperty("test.testFileRoot", "./tests/testfiles
 
 // 1) -------------------------------------------------------------
 
+//String filexpdl = "Residency.xpdl";
+
+
+
+//xpdl = import_bpmn_model_from_xpdl_2_1_file(testFileRoot+"/"+filexpdl);
+//junit.framework.Assert.assertNotNull("xpdl file is not null", xpdl);
+
+//petrinet = bpmn_to_petrinet(xpdl)[0];
+
 String file = "Residency.bpmn";
 
 
 print("Reading file: "+file);
-bpmn = import_bpmn_model_from_bpmn_2_0_file(testFileRoot+"/"+file);
+bpmn = import_bpmn_model_from_bpmn_2_0_file_with_xslt(testFileRoot+"/"+file);
 junit.framework.Assert.assertNotNull("BPMN file is not null", bpmn);
 
 petrinet = bpmn_to_petrinet(bpmn)[0];
