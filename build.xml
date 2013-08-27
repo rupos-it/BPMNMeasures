@@ -142,7 +142,6 @@
 							<dependency name="LogDialog"/>
 							<dependency name="LogMerge"/>
 							<dependency name="PetriNetReplayAnalysis"/>
-							<dependency name="PetriNetReplayer"/>
 							<dependency name="PetriNets"/>
 						</package>
 					</packages>
