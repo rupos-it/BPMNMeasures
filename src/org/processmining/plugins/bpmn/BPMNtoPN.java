@@ -168,6 +168,7 @@ public class BPMNtoPN {
 			if (g.getGatewayType().equals(GatewayType.DATABASED)) {
 				int i = 0;
 				Map<String, Transition> tranMap = new HashMap<String, Transition>();
+				
 				//gateway data-based if branch 
 				if (g.getGraph().getOutEdges(g).size()>1 && g.getGraph().getInEdges(g).size()==1 ){
 					for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g.getGraph().getOutEdges(g)) {
@@ -218,6 +219,45 @@ public class BPMNtoPN {
 							net.addArc(t, ps, this.subNet);
 
 						}
+					}else{
+						if (g.getGraph().getOutEdges(g).size()>1 && g.getGraph().getInEdges(g).size()>1 ){
+							i=0;
+							for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g.getGraph().getOutEdges(g)) {
+								String source = s.getSource().getLabel();
+								String target = s.getTarget().getLabel();
+
+								Transition t = net.addTransition(g.getLabel() + "_" + i++,
+										this.subNet);
+								t.setInvisible(true);
+								tranMap.put(target + source, t);
+
+								Place pst = flowMap.get(s);
+
+								net.addArc(t, pst, 1, this.subNet);
+
+							}
+							i=0;
+							for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g.getGraph().getInEdges(g)) {
+								String source = s.getSource().getLabel();
+								String target = s.getTarget().getLabel();
+								
+								Place pst = flowMap.get(s);
+
+								Transition t = net.addTransition(g.getLabel() + "_" + i++,this.subNet );
+								t.setInvisible(true);
+								net.addArc( pst,t, 1, this.subNet);
+
+								
+								/*Place pst = flowMap.get(s);
+
+								for (Transition t : tranMap.values()) {
+
+									net.addArc(pst, t, 1, this.subNet);
+
+								}*/
+							}
+						}
+						
 					}
 				}
 
