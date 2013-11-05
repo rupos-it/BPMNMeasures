@@ -222,6 +222,7 @@ public class BPMNtoPN {
 					}else{
 						if (g.getGraph().getOutEdges(g).size()>1 && g.getGraph().getInEdges(g).size()>1 ){
 							i=0;
+							Place placecentral = net.addPlace(g.getLabel(), this.subNet);
 							for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g.getGraph().getOutEdges(g)) {
 								String source = s.getSource().getLabel();
 								String target = s.getTarget().getLabel();
@@ -234,7 +235,8 @@ public class BPMNtoPN {
 								Place pst = flowMap.get(s);
 
 								net.addArc(t, pst, 1, this.subNet);
-
+								
+								net.addArc(placecentral,t, this.subNet);
 							}
 							i=0;
 							for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g.getGraph().getInEdges(g)) {
@@ -247,7 +249,7 @@ public class BPMNtoPN {
 								t.setInvisible(true);
 								net.addArc( pst,t, 1, this.subNet);
 
-								
+								net.addArc(t, placecentral, this.subNet);
 								/*Place pst = flowMap.get(s);
 
 								for (Transition t : tranMap.values()) {
