@@ -118,7 +118,7 @@ public class BPMNtoPN {
 		for (Flow g : bpmn.getFlows()) {
 			String f = g.getSource().getLabel() + "#";
 			String z = g.getTarget().getLabel();
-			ContainingDirectedGraphNode parentFlow = g.getParent();
+			ContainingDirectedGraphNode parentFlow = g.getParentSubProcess();
 			// System.out.println("parent: " + parent);
 			if (parentFlow==parent) {
 				Place p = net.addPlace(f + z, this.subNet);
@@ -265,7 +265,7 @@ public class BPMNtoPN {
 			ContainingDirectedGraphNode parent) {
 		
 		for (Activity c : bpmn.getActivities()) {
-			if (parent == c.getParent()) {
+			if (parent == c.getParentSubProcess()) {
 				String id = c.getLabel();
 
 				Transition t = net.addTransition(id + "+start", this.subNet);
@@ -304,7 +304,7 @@ public class BPMNtoPN {
 			LinkedHashMap<Flow, Place> flowMap, PetrinetGraph net,
 			ContainingDirectedGraphNode parent) {
 		for (Gateway g : bpmn.getGateways()) {
-			if (parent == g.getParent()) {
+			if (parent == g.getParentSubProcess()) {
 				// gateway data-based
 				if (g.getGatewayType().equals(GatewayType.DATABASED)) {
 					int i = 0;
@@ -502,7 +502,7 @@ public class BPMNtoPN {
 			LinkedHashMap<Flow, Place> flowMap, PetrinetGraph net,
 			Marking marking, ContainingDirectedGraphNode parent) {
 		for (Event e : bpmn.getEvents()) {
-			if (parent == e.getParent()) {
+			if (parent == e.getParentSubProcess()) {
 				if (e.getEventType().equals(EventType.START)
 						&& e.getEventTrigger().equals(EventTrigger.NONE)) {
 
