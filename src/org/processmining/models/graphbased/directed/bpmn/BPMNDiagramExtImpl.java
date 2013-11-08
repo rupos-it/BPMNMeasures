@@ -64,9 +64,9 @@ implements BPMNDiagramExt {
 
 		for (Swimlane s : bpmndiagram.getSwimlanes()) {
 			if(mapping.containsKey(s)){
-				mapping.put(s, addSwimlane(s.getLabel(), (Swimlane) mapping.get(s)));
+				mapping.put(s, addSwimlane(s.getLabel(), (Swimlane) mapping.get(s),s.getSwimlaneType()));
 			}else{
-				mapping.put(s, addSwimlane(s.getLabel(), null));
+				mapping.put(s, addSwimlane(s.getLabel(), null,s.getSwimlaneType()));
 			}
 				
 		}
@@ -202,9 +202,9 @@ implements BPMNDiagramExt {
 
 		for (Swimlane s : bpmndiagram.getSwimlanes()) {
 			if(mapping.containsKey(s)){
-				mapping.put(s, addSwimlane(s.getLabel(), (Swimlane) mapping.get(s)));
+				mapping.put(s, addSwimlane(s.getLabel(), (Swimlane) mapping.get(s),s.getSwimlaneType()));
 			}else{
-				mapping.put(s, addSwimlane(s.getLabel(), null));
+				mapping.put(s, addSwimlane(s.getLabel(), null,s.getSwimlaneType()));
 			}
 				
 		}
