@@ -373,7 +373,12 @@ public class BPMNDecorateUtil {
 				if(activity!=null){
 					String unsoundallert = "";
 					for (Place p : remaning.baseSet()) {
-
+						  PetrinetNode s = p.getGraph().getOutEdges(p).iterator().next().getTarget();
+						
+						if(s.getLabel().endsWith("End Event")){
+							
+							continue;
+						}
 						if (p.getLabel().equals(name)&& tname.endsWith("start")) {
 							unsoundallert += ret + " Task missing completion\n";
 						} else if(p.getLabel().contains("#")){
@@ -397,7 +402,7 @@ public class BPMNDecorateUtil {
 					}
 					if (activity != null && unsoundallert!="") {
 
-
+						activity.getAttributeMap().put(AttributeMap.STROKECOLOR, Color.RED);
 						String label = "<html>"+ unsoundallert + "<html>";
 						if(!mapActiArtic.containsKey(activity)){
 
