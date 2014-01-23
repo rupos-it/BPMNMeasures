@@ -59,11 +59,13 @@
 	<classpathentry kind="lib" path="stdlib/ProM-Plugins.jar"/>
 	<classpathentry kind="lib" path="packagelib/Log.jar"/>
 	<classpathentry kind="lib" path="packagelib/LogDialog.jar"/>
-	<classpathentry kind="lib" path="packagelib/PetriNetReplayAnalysis.jar"/>
 	<classpathentry kind="lib" path="packagelib/PetriNets.jar"/>
-	<classpathentry kind="lib" path="packagelib/BPMN.jar"/>
 	<classpathentry kind="lib" path="lib/saxon9he.jar"/>
 	<classpathentry kind="lib" path="packagelib/InteractiveVisualization.jar"/>
 	<classpathentry kind="lib" path="stdlib/EfficientStorage.jar"/>
+	<classpathentry kind="lib" path="packagelib/Widgets.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/PetriNetReplayAnalysis"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/KeyValue"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/BPMN"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

@@ -373,20 +373,32 @@ public class BPMNDecorateUtil {
 				if(activity!=null){
 					String unsoundallert = "";
 					for (Place p : remaning.baseSet()) {
-						  PetrinetNode s = p.getGraph().getOutEdges(p).iterator().next().getTarget();
-						
-						if(s.getLabel().endsWith("End Event")){
-							
+						if (p.getLabel().endsWith("End Event")) {
+							continue;
+
+						}
+						PetrinetNode s = p.getGraph().getOutEdges(p).iterator()
+								.next().getTarget();
+
+						if (s.getLabel().endsWith("End Event")) {
+
 							continue;
 						}
-						if (p.getLabel().equals(name)&& tname.endsWith("start")) {
+						if (p.getLabel().equals(name)
+								&& tname.endsWith("start")) {
 							unsoundallert += ret + " Task missing completion\n";
-						} else if(p.getLabel().contains("#")){
-							String startname = p.getLabel().substring(0, p.getLabel().indexOf("#"));
-							if (startname.equals(name) && !tname.endsWith("start") ) {
-								//unsoundallert += ret + " Branch interrupted executions\n";
+						} else { System.out.println(p.getLabel());
+							if (p.getLabel().contains("#")) {
+								String startname = p.getLabel().substring(0,
+										p.getLabel().indexOf("#"));
+								if ( !tname.endsWith("start")) {
+									// unsoundallert += ret +startname.equals(name)	&&
+									// " Branch interrupted executions\n";
 
-								archibpmnwitherrorconformance.put(p.getLabel(), " Branch interrupted executions");
+									archibpmnwitherrorconformance.put(
+											p.getLabel(),
+											" Branch interrupted executions");
+								}
 							}
 						}
 					}
