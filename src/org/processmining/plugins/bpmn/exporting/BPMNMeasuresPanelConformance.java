@@ -97,7 +97,7 @@ public class BPMNMeasuresPanelConformance extends JPanel{
 		logInteractionPanel = new LogViewInteractivePanel(netPNView, log);
 		netPNView.addViewInteractionPanel(logInteractionPanel, SwingConstants.SOUTH);
 
-		tabinteractivepanel = new TabTraceConfPanel(netPNView, "Trace_Sel", tovisualize, this);
+		tabinteractivepanel = new TabTraceConfPanel(netPNView, "Trace_Sel", tovisualize, this,log);
 		netPNView.addViewInteractionPanel(tabinteractivepanel, SwingConstants.SOUTH);
 		
 		

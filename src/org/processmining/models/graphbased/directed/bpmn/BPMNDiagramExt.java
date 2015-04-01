@@ -5,9 +5,7 @@ import java.util.Collection;
 import java.util.Set;
 
 
-import org.processmining.models.graphbased.directed.DirectedGraph;
 import org.processmining.models.graphbased.directed.bpmn.elements.Artifacts;
-import org.processmining.models.graphbased.directed.bpmn.elements.Flow;
 import org.processmining.models.graphbased.directed.bpmn.elements.FlowAssociation;
 import org.processmining.models.graphbased.directed.bpmn.elements.Swimlane;
 

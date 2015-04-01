@@ -20,6 +20,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JComponent;
 
+import javax.swing.Box;
 import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -33,11 +34,16 @@ import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.TableCellRenderer;
 import javax.swing.table.TableColumn;
 
+import org.deckfour.xes.info.XLogInfo;
+import org.deckfour.xes.info.XLogInfoFactory;
+import org.deckfour.xes.model.XLog;
 import org.processmining.framework.util.ui.scalableview.ScalableComponent;
 import org.processmining.framework.util.ui.scalableview.ScalableViewPanel;
 import org.processmining.framework.util.ui.scalableview.interaction.ViewInteractionPanel;
+import org.processmining.framework.util.ui.widgets.InspectorPanel;
 
 
+import org.processmining.plugins.log.ui.logdialog.ProcessInstanceView;
 import org.processmining.plugins.petrinet.replay.conformance.TotalConformanceResult;
 
 
@@ -66,9 +72,12 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 	private String panelName;
 	private TotalConformanceResult TCR;
 	private BPMNMeasuresPanelConformance panel;
+	private XLog log;
+	private  InspectorPanel inspector;
 
 
-	public TabTraceConfPanel(ScalableViewPanel panels, String panelName, TotalConformanceResult tcr, BPMNMeasuresPanelConformance bpanel){
+
+	public TabTraceConfPanel(ScalableViewPanel panels, String panelName, TotalConformanceResult tcr, BPMNMeasuresPanelConformance bpanel, XLog lg){
 		super(new BorderLayout());
 
 		this.setBorder(BorderFactory.createEmptyBorder());
@@ -83,8 +92,36 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 		TCR=tcr;
 		panel=bpanel;
 		painttabtrace();
+		
+		this.log=lg;
+		
+		inspector = new InspectorPanel();
+		panel.add(inspector);
 	}
 
+	private void widget(int index){
+
+		 XLogInfo info = null;
+		 info = XLogInfoFactory.createLogInfo(log);
+		 ProcessInstanceView instanceView = new ProcessInstanceView(log.get(index), info);
+		 instanceView.setAlignmentX(LEFT_ALIGNMENT);
+			JPanel comprisePanel = new JPanel();
+			comprisePanel.setAlignmentX(LEFT_ALIGNMENT);
+			comprisePanel.setBorder(BorderFactory.createEmptyBorder());
+			comprisePanel.setOpaque(false);
+			comprisePanel.setLayout(new BoxLayout(comprisePanel, BoxLayout.X_AXIS));
+			comprisePanel.add(instanceView);
+			comprisePanel.add(Box.createHorizontalGlue());
+			
+		 // inspector = new InspectorPanel();
+			inspector.removeInfoAll(0);
+		  inspector.addInfo("Log", comprisePanel);
+		 
+		
+		
+		//, "0, 0");
+		
+	}
 
 	private void painttabtrace() {
 		this.setBackground(new Color(30, 30, 30));
@@ -203,6 +240,7 @@ public class TabTraceConfPanel extends JPanel implements MouseListener, MouseMot
 				int i=tab.getSelectedRow();
 				if(i>=0){
 					panel.updateone(i);
+					widget(i);
 				}
 
 			}
