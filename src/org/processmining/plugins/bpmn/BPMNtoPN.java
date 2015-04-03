@@ -2,7 +2,6 @@ package org.processmining.plugins.bpmn;
 
 import java.awt.geom.Point2D;
 import java.awt.geom.Rectangle2D;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -14,13 +13,14 @@ import java.util.Map;
 import java.util.Set;
 import java.util.Vector;
 
+import javax.swing.JComponent;
 import javax.swing.SwingConstants;
 
+import org.deckfour.uitopia.api.event.TaskListener.InteractionResult;
 import org.jgraph.graph.GraphConstants;
 import org.jgraph.graph.AttributeMap.SerializablePoint2D;
 import org.processmining.contexts.uitopia.UIPluginContext;
 import org.processmining.contexts.uitopia.annotations.UITopiaVariant;
-
 import org.processmining.framework.connections.ConnectionCannotBeObtained;
 import org.processmining.framework.plugin.PluginContext;
 import org.processmining.framework.plugin.annotations.Plugin;
@@ -28,14 +28,12 @@ import org.processmining.framework.plugin.annotations.PluginVariant;
 import org.processmining.models.connections.GraphLayoutConnection;
 import org.processmining.models.connections.petrinets.behavioral.InitialMarkingConnection;
 import org.processmining.models.graphbased.AttributeMap;
-
 import org.processmining.models.graphbased.directed.AbstractDirectedGraphEdge;
 import org.processmining.models.graphbased.directed.AbstractDirectedGraphNode;
 import org.processmining.models.graphbased.directed.ContainableDirectedGraphElement;
 import org.processmining.models.graphbased.directed.ContainingDirectedGraphNode;
 import org.processmining.models.graphbased.directed.DirectedGraph;
 import org.processmining.models.graphbased.directed.bpmn.BPMNDiagram;
-
 import org.processmining.models.graphbased.directed.bpmn.BPMNEdge;
 import org.processmining.models.graphbased.directed.bpmn.BPMNNode;
 import org.processmining.models.graphbased.directed.bpmn.elements.Activity;
@@ -51,7 +49,6 @@ import org.processmining.models.graphbased.directed.petrinet.Petrinet;
 import org.processmining.models.graphbased.directed.petrinet.PetrinetEdge;
 import org.processmining.models.graphbased.directed.petrinet.PetrinetGraph;
 import org.processmining.models.graphbased.directed.petrinet.PetrinetNode;
-
 import org.processmining.models.graphbased.directed.petrinet.elements.ExpandableSubNet;
 import org.processmining.models.graphbased.directed.petrinet.elements.Place;
 import org.processmining.models.graphbased.directed.petrinet.elements.Transition;
@@ -61,6 +58,7 @@ import org.processmining.models.jgraph.ProMJGraphVisualizer;
 import org.processmining.models.jgraph.elements.ProMGraphPort;
 import org.processmining.models.semantics.petrinet.Marking;
 import org.processmining.plugins.petrinet.ArrayPetriNet;
+import org.processmining.plugins.petrinet.replay.util.PanelIntroPlugin;
 
 import com.jgraph.layout.JGraphFacade;
 import com.jgraph.layout.hierarchical.JGraphHierarchicalLayout;
@@ -71,10 +69,10 @@ public class BPMNtoPN {
 
 	@Plugin(name = "BPMN to PetriNet with sub-process explore", parameterLabels = { "BPMNDiagram" }, returnLabels = {
 			"Petri Net", "Marking"}, returnTypes = {  Petrinet.class, Marking.class}, userAccessible = true)
-@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
-@PluginVariant(requiredParameterLabels = { 0 }, variantLabel = "Trasform BPMN to PN")
-public Object[] BPMN2PN_WithSubSecondVersion(PluginContext c, BPMNDiagram bpmn) {
-	
+	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
+	@PluginVariant(requiredParameterLabels = { 0 }, variantLabel = "Trasform BPMN to PN")
+	public Object[] BPMN2PN_WithSubSecondVersion(PluginContext c, BPMNDiagram bpmn) {
+
 		Collection<String> error = this.isWellFormed(bpmn);
 
 		// final LinkedHashMap<Place, Flow> placeMap = new LinkedHashMap<Place,
@@ -83,8 +81,8 @@ public Object[] BPMN2PN_WithSubSecondVersion(PluginContext c, BPMNDiagram bpmn) 
 		String nameBPMNDiagram =  bpmn.getLabel();
 		if(nameBPMNDiagram.length()<=0){
 			nameBPMNDiagram="Unnamed";
-		
-		}
+
+		}	
 		PetrinetGraph net = PetrinetFactory.newPetrinet(nameBPMNDiagram);
 		Marking marking = new Marking();
 		Collection<Swimlane> collezioneswimlane = bpmn.getSwimlanes();
@@ -92,16 +90,16 @@ public Object[] BPMN2PN_WithSubSecondVersion(PluginContext c, BPMNDiagram bpmn) 
 
 		traslateFlow(bpmn, flowMap, net, parent);
 
-		translateTask(bpmn, flowMap, net, parent);
+		translateTask(bpmn, flowMap, net, parent,0);
 
 		translateGateway(bpmn, flowMap, net, parent);
 
 		translateEvent(bpmn, flowMap, net, marking, parent);
 
 		translateSubProcess2(bpmn, flowMap, net, marking, parent);
-		
-		
-		
+
+
+
 
 		if (c instanceof UIPluginContext) {
 			layoutcreate(c, net);
@@ -111,30 +109,30 @@ public Object[] BPMN2PN_WithSubSecondVersion(PluginContext c, BPMNDiagram bpmn) 
 		if(numsub<=0){
 			numsub=0;
 		}
-		
-		
+
+
 
 		c.addConnection(new BPMNtoPNConnection(bpmn, net, errorLog, flowMap
 				.values()));
 
 		c.addConnection(new InitialMarkingConnection(net, marking));
-		
-		
-		
-		
-		
 
-		
+
+
+
+
+
+
 
 		return new Object[] { net, marking };
 	}
-	
+
 	@Plugin(name = "BPMN to PetriNet with sub-process", parameterLabels = { "BPMNDiagram" }, returnLabels = {
 	"Array Petri Net"}, returnTypes = { ArrayPetriNet.class}, userAccessible = true)
-@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
-@PluginVariant(requiredParameterLabels = { 0 }, variantLabel = "Trasform BPMN to PN")
-public ArrayPetriNet BPMN2PN_WithSub(PluginContext c, BPMNDiagram bpmn) {
-	
+	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
+	@PluginVariant(requiredParameterLabels = { 0 }, variantLabel = "Trasform BPMN to PN")
+	public ArrayPetriNet BPMN2PN_WithSub(PluginContext c, BPMNDiagram bpmn) {
+
 		Collection<String> error = this.isWellFormed(bpmn);
 
 		// final LinkedHashMap<Place, Flow> placeMap = new LinkedHashMap<Place,
@@ -143,7 +141,7 @@ public ArrayPetriNet BPMN2PN_WithSub(PluginContext c, BPMNDiagram bpmn) {
 		String nameBPMNDiagram =  bpmn.getLabel();
 		if(nameBPMNDiagram.length()<=0){
 			nameBPMNDiagram="Unnamed";
-		
+
 		}
 		PetrinetGraph net = PetrinetFactory.newPetrinet(nameBPMNDiagram);
 		Marking marking = new Marking();
@@ -152,16 +150,16 @@ public ArrayPetriNet BPMN2PN_WithSub(PluginContext c, BPMNDiagram bpmn) {
 
 		traslateFlow(bpmn, flowMap, net, parent);
 
-		translateTask(bpmn, flowMap, net, parent);
+		translateTask(bpmn, flowMap, net, parent,0);
 
 		translateGateway(bpmn, flowMap, net, parent);
 
 		translateEvent(bpmn, flowMap, net, marking, parent);
 
 		translateSubProcess(bpmn, flowMap, net, marking, parent);
-		
-	
-		
+
+
+
 
 		if (c instanceof UIPluginContext) {
 			layoutcreate(c, net);
@@ -171,46 +169,72 @@ public ArrayPetriNet BPMN2PN_WithSub(PluginContext c, BPMNDiagram bpmn) {
 		if(numsub<=0){
 			numsub=0;
 		}
-		
+
 		ArrayPetriNet apn = new ArrayPetriNet();
-		
-		
-		
+
+
+
 		apn.setElementListpn(net,marking);
 		c.addConnection(new BPMNtoPNConnection(bpmn, net, errorLog, flowMap
 				.values()));
 
 		c.addConnection(new InitialMarkingConnection(net, marking));
-		
+
 		int i=1;
-		
+
 		for (SubProcess sub : bpmn.getSubProcesses()) {
-			
+
 			Marking markingsub = new Marking();
 			LinkedHashMap<Flow, Place> flowMapsub = new LinkedHashMap<Flow, Place>();
 			PetrinetGraph netsub = transSubProcess(sub,markingsub,flowMapsub);
 			apn.setElementListpn(netsub,markingsub);
-			
+
 			c.addConnection(new BPMNtoPNConnection(bpmn, netsub, errorLog, flowMapsub
 					.values()));
 
 			c.addConnection(new InitialMarkingConnection(netsub, markingsub));
 			i++;
 		}
-		
-		
-		
-		
 
-		
+
+
+
+
+
 
 		return apn;
 	}
+
+
+	@Plugin(name = "UI BPMN to PetriNet", parameterLabels = { "BPMNDiagram" }, returnLabels = {
+			"Petri Net", "Marking"}, returnTypes = { Petrinet.class, Marking.class}, userAccessible = true)
+	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
+	@PluginVariant(requiredParameterLabels = { 0 }, variantLabel = "UIPluginContext Trasform BPMN to PN")
+	public Object[] BPMN2PN(UIPluginContext context, BPMNDiagram bpmn) {
+
+		
+			
+		BPMNLifecycleUI intro = new BPMNLifecycleUI();
+			
+			 InteractionResult result = context.showWizard("Select Type Mapping", true, true, intro );
+
+		
+		return BaseBPMN2PN(context, bpmn,intro.getselectcb());
+
+	}
+
 	@Plugin(name = "BPMN to PetriNet", parameterLabels = { "BPMNDiagram" }, returnLabels = {
 			"Petri Net", "Marking"}, returnTypes = { Petrinet.class, Marking.class}, userAccessible = true)
 	@UITopiaVariant(affiliation = "Department of Computer Science University of Pisa", author = "R.Guanciale,G.Spagnolo et al.", email = "spagnolo@di.unipi.it", pack = "BPMNMeasures")
 	@PluginVariant(requiredParameterLabels = { 0 }, variantLabel = "Trasform BPMN to PN")
 	public Object[] BPMN2PN(PluginContext c, BPMNDiagram bpmn) {
+
+
+		return BaseBPMN2PN(c, bpmn,0);
+
+	}
+
+	public Object[] BaseBPMN2PN(PluginContext c, BPMNDiagram bpmn, int typelifecycle){
 		Collection<String> error = this.isWellFormed(bpmn);
 
 		// final LinkedHashMap<Place, Flow> placeMap = new LinkedHashMap<Place,
@@ -219,8 +243,12 @@ public ArrayPetriNet BPMN2PN_WithSub(PluginContext c, BPMNDiagram bpmn) {
 		String nameBPMNDiagram =  bpmn.getLabel();
 		if(nameBPMNDiagram.length()<=0){
 			nameBPMNDiagram="Unnamed";
-		
+
 		}
+
+
+
+
 		PetrinetGraph net = PetrinetFactory.newPetrinet(nameBPMNDiagram);
 		Marking marking = new Marking();
 		Collection<Swimlane> collezioneswimlane = bpmn.getSwimlanes();
@@ -228,16 +256,16 @@ public ArrayPetriNet BPMN2PN_WithSub(PluginContext c, BPMNDiagram bpmn) {
 
 		traslateFlow(bpmn, flowMap, net, parent);
 
-		translateTask(bpmn, flowMap, net, parent);
+		translateTask(bpmn, flowMap, net, parent,typelifecycle);
 
 		translateGateway(bpmn, flowMap, net, parent);
 
 		translateEvent(bpmn, flowMap, net, marking, parent);
 
 		translateSubProcess(bpmn, flowMap, net, marking, parent);
-		
-		
-		
+
+
+
 
 		if (c instanceof UIPluginContext) {
 			layoutcreate(c, net);
@@ -247,22 +275,23 @@ public ArrayPetriNet BPMN2PN_WithSub(PluginContext c, BPMNDiagram bpmn) {
 		if(numsub<=0){
 			numsub=0;
 		}
-		
-		
+
+
 		c.addConnection(new BPMNtoPNConnection(bpmn, net, errorLog, flowMap
 				.values()));
 
 		c.addConnection(new InitialMarkingConnection(net, marking));
-		
-		
-		
-		
-		
 
-		
+
+
+
+
+
+
 
 		return new Object[] { net, marking };
 	}
+
 
 	private void traslateFlow(BPMNDiagram bpmn,
 			LinkedHashMap<Flow, Place> flowMap, PetrinetGraph net,
@@ -302,295 +331,164 @@ public ArrayPetriNet BPMN2PN_WithSub(PluginContext c, BPMNDiagram bpmn) {
 	private void transNodes(List<BPMNNode> listnode,
 			LinkedHashMap<Flow, Place> flowMap, PetrinetGraph net, Marking marking) {
 		for (BPMNNode node : listnode) {
-if(node instanceof Event ){
-	Event e = (Event) node;
-	
-	if (e.getEventType().equals(EventType.START)
-			&& e.getEventTrigger().equals(EventTrigger.NONE)) {
+			if(node instanceof Event ){
+				Event e = (Event) node;
 
-		// Place p = new Place(e.getLabel(), net);
-		String name = e.getLabel().toUpperCase();
-		Place p = net.addPlace("p" + e.getLabel(), this.subNet);
+				if (e.getEventType().equals(EventType.START)
+						&& e.getEventTrigger().equals(EventTrigger.NONE)) {
 
-		Transition t = net.addTransition("t_" + name, this.subNet);
-		t.setInvisible(true);
-		net.addArc(p, t, 1, this.subNet);
-		
-		marking.add(p, 1);
-		
-		for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : e
-				.getGraph().getOutEdges(e)) {
+					// Place p = new Place(e.getLabel(), net);
+					String name = e.getLabel().toUpperCase();
+					Place p = net.addPlace("p" + e.getLabel(), this.subNet);
 
-			Place pst = flowMap.get(s);
+					Transition t = net.addTransition("t_" + name, this.subNet);
+					t.setInvisible(true);
+					net.addArc(p, t, 1, this.subNet);
 
-			net.addArc(t, pst, 1, this.subNet);
+					marking.add(p, 1);
 
-		}
+					for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : e
+							.getGraph().getOutEdges(e)) {
 
-	}
-	if (e.getEventType().equals(EventType.END)
-			&& e.getEventTrigger().equals(EventTrigger.NONE)) {
+						Place pst = flowMap.get(s);
 
-		Place p = net.addPlace("p" + e.getLabel(), this.subNet);
+						net.addArc(t, pst, 1, this.subNet);
 
-		Transition t = net.addTransition("t_" + e.getLabel(),
-				this.subNet);
+					}
 
-		t.setInvisible(true);
-		net.addArc(t, p, 1, this.subNet);
-
-		for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : e
-				.getGraph().getInEdges(e)) {
-
-			Place pst = flowMap.get(s);
-
-			net.addArc(pst, t, 1, this.subNet);
-
-		}
-
-	}
-	if (e.getEventType().equals(EventType.INTERMEDIATE)
-			&& !e.getEventTrigger().equals(EventTrigger.NONE)) {
-
-		Transition t = net.addTransition(e.getLabel(), this.subNet);
-
-		if (e.getBoundingNode() == null) {
-			BPMNEdge<? extends BPMNNode, ? extends BPMNNode> g = e
-					.getGraph().getInEdges(e).iterator().next();
-			if (g instanceof Flow && g != null) {
-				Place ps_pre = flowMap.get(g);
-
-				g = e.getGraph().getOutEdges(e).iterator().next();
-				;
-				if (g instanceof Flow && g != null) {
-					Place ps_post = flowMap.get(g);
-
-					net.addArc(ps_pre, t, 1, this.subNet);
-					net.addArc(t, ps_post, 1, this.subNet);
 				}
+				if (e.getEventType().equals(EventType.END)
+						&& e.getEventTrigger().equals(EventTrigger.NONE)) {
 
-			}
-		} else {
-			//  un evento di confine
+					Place p = net.addPlace("p" + e.getLabel(), this.subNet);
 
-		}
+					Transition t = net.addTransition("t_" + e.getLabel(),
+							this.subNet);
 
-	}
-}else{
-			if (node instanceof Activity) {
-				Activity a = (Activity) node;
-				String id = a.getLabel();
+					t.setInvisible(true);
+					net.addArc(t, p, 1, this.subNet);
 
-				Transition t = net.addTransition(id + "+start", this.subNet);
-				Place p = net.addPlace(id, this.subNet);
-				net.addArc(t, p, 1, this.subNet);
-				Transition t1 = net
-						.addTransition(id + "+complete", this.subNet);
-				net.addArc(p, t1, 1, this.subNet);
-
-				for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : a
-						.getGraph().getInEdges(a)) {
-					if (s instanceof Flow) {
+					for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : e
+							.getGraph().getInEdges(e)) {
 
 						Place pst = flowMap.get(s);
 
 						net.addArc(pst, t, 1, this.subNet);
+
 					}
 
 				}
-				for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : a
-						.getGraph().getOutEdges(a)) {
-					if (s instanceof Flow) {
+				if (e.getEventType().equals(EventType.INTERMEDIATE)
+						&& !e.getEventTrigger().equals(EventTrigger.NONE)) {
 
-						Place pst = flowMap.get(s);
+					Transition t = net.addTransition(e.getLabel(), this.subNet);
 
-						net.addArc(t1, pst, 1, this.subNet);
+					if (e.getBoundingNode() == null) {
+						BPMNEdge<? extends BPMNNode, ? extends BPMNNode> g = e
+								.getGraph().getInEdges(e).iterator().next();
+						if (g instanceof Flow && g != null) {
+							Place ps_pre = flowMap.get(g);
+
+							g = e.getGraph().getOutEdges(e).iterator().next();
+							;
+							if (g instanceof Flow && g != null) {
+								Place ps_post = flowMap.get(g);
+
+								net.addArc(ps_pre, t, 1, this.subNet);
+								net.addArc(t, ps_post, 1, this.subNet);
+							}
+
+						}
+					} else {
+						//  un evento di confine
+
 					}
+
 				}
+			}else{
+				if (node instanceof Activity) {
+					Activity a = (Activity) node;
+					String id = a.getLabel();
 
-			} else {
-				if (node instanceof Gateway) {
-					Gateway g = (Gateway) node;
-					// gateway data-based
-					if (g.getGatewayType().equals(GatewayType.DATABASED)) {
-						int i = 0;
-						Map<String, Transition> tranMap = new HashMap<String, Transition>();
+					Transition t = net.addTransition(id + "+start", this.subNet);
+					Place p = net.addPlace(id, this.subNet);
+					net.addArc(t, p, 1, this.subNet);
+					Transition t1 = net
+							.addTransition(id + "+complete", this.subNet);
+					net.addArc(p, t1, 1, this.subNet);
 
-						// gateway data-based if branch
-						if (g.getGraph().getOutEdges(g).size() > 1
-								&& g.getGraph().getInEdges(g).size() == 1) {
-							for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
-									.getGraph().getOutEdges(g)) {
-								String source = s.getSource().getLabel();
-								String target = s.getTarget().getLabel();
+					for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : a
+							.getGraph().getInEdges(a)) {
+						if (s instanceof Flow) {
 
-								Transition t = net.addTransition(g.getLabel()
-										+ "_" + i++, this.subNet);
-								t.setInvisible(true);
-								tranMap.put(target + source, t);
+							Place pst = flowMap.get(s);
 
-								Place pst = flowMap.get(s);
-
-								net.addArc(t, pst, 1, this.subNet);
-
-							}
-							for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
-									.getGraph().getInEdges(g)) {
-								String source = s.getSource().getLabel();
-								String target = s.getTarget().getLabel();
-
-								Place pst = flowMap.get(s);
-
-								for (Transition t : tranMap.values()) {
-
-									net.addArc(pst, t, 1, this.subNet);
-
-								}
-							}
-						} else {
-							// gateway merge
-							if (g.getGraph().getOutEdges(g).size() == 1
-									&& g.getGraph().getInEdges(g).size() > 1) {
-
-								Place ps = null;
-								for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> out : g
-										.getGraph().getOutEdges(g)) {
-									ps = flowMap.get(out);
-								}
-								i = 0;
-								for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
-										.getGraph().getInEdges(g)) {
-
-									Place pst = flowMap.get(s);
-
-									Transition t = net.addTransition(
-											g.getLabel() + "_" + i++,
-											this.subNet);
-									t.setInvisible(true);
-									net.addArc(pst, t, 1, this.subNet);
-
-									net.addArc(t, ps, this.subNet);
-
-								}
-							} else {
-								if (g.getGraph().getOutEdges(g).size() > 1
-										&& g.getGraph().getInEdges(g).size() > 1) {
-									i = 0;
-									Place placecentral = net.addPlace(
-											g.getLabel(), this.subNet);
-									for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
-											.getGraph().getOutEdges(g)) {
-										String source = s.getSource()
-												.getLabel();
-										String target = s.getTarget()
-												.getLabel();
-
-										Transition t = net.addTransition(
-												g.getLabel() + "_" + i++,
-												this.subNet);
-										t.setInvisible(true);
-										tranMap.put(target + source, t);
-
-										Place pst = flowMap.get(s);
-
-										net.addArc(t, pst, 1, this.subNet);
-
-										net.addArc(placecentral, t, this.subNet);
-									}
-									//i = 0;
-									for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
-											.getGraph().getInEdges(g)) {
-										String source = s.getSource()
-												.getLabel();
-										String target = s.getTarget()
-												.getLabel();
-
-										Place pst = flowMap.get(s);
-
-										Transition t = net.addTransition(
-												g.getLabel() + "_" + i++,
-												this.subNet);
-										t.setInvisible(true);
-										net.addArc(pst, t, 1, this.subNet);
-
-										net.addArc(t, placecentral, this.subNet);
-										/*
-										 * Place pst = flowMap.get(s);
-										 * 
-										 * for (Transition t : tranMap.values())
-										 * {
-										 * 
-										 * net.addArc(pst, t, 1, this.subNet);
-										 * 
-										 * }
-										 */
-									}
-								}
-
-							}
+							net.addArc(pst, t, 1, this.subNet);
 						}
 
-					} else {
-						if (g.getGatewayType().equals(GatewayType.PARALLEL)) {
-							// gateway parallel fork
+					}
+					for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : a
+							.getGraph().getOutEdges(a)) {
+						if (s instanceof Flow) {
+
+							Place pst = flowMap.get(s);
+
+							net.addArc(t1, pst, 1, this.subNet);
+						}
+					}
+
+				} else {
+					if (node instanceof Gateway) {
+						Gateway g = (Gateway) node;
+						// gateway data-based
+						if (g.getGatewayType().equals(GatewayType.DATABASED)) {
+							int i = 0;
+							Map<String, Transition> tranMap = new HashMap<String, Transition>();
+
+							// gateway data-based if branch
 							if (g.getGraph().getOutEdges(g).size() > 1
 									&& g.getGraph().getInEdges(g).size() == 1) {
-								BPMNEdge<? extends BPMNNode, ? extends BPMNNode> so = g
-										.getGraph().getInEdges(g).iterator()
-										.next();
-
-								Place ps = flowMap.get(so);
-								Transition t = net.addTransition(g.getLabel()
-										+ "_fork", this.subNet);
-								t.setInvisible(true);
-								net.addArc(ps, t, 1, this.subNet);
 								for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
 										.getGraph().getOutEdges(g)) {
+									String source = s.getSource().getLabel();
+									String target = s.getTarget().getLabel();
+
+									Transition t = net.addTransition(g.getLabel()
+											+ "_" + i++, this.subNet);
+									t.setInvisible(true);
+									tranMap.put(target + source, t);
 
 									Place pst = flowMap.get(s);
+
 									net.addArc(t, pst, 1, this.subNet);
 
 								}
+								for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
+										.getGraph().getInEdges(g)) {
+									String source = s.getSource().getLabel();
+									String target = s.getTarget().getLabel();
 
-							} else {
-								// gateway parallel Join
-								if (g.getGraph().getOutEdges(g).size() == 1
-										&& g.getGraph().getInEdges(g).size() > 1) {
-									BPMNEdge<? extends BPMNNode, ? extends BPMNNode> so = g
-											.getGraph().getOutEdges(g)
-											.iterator().next();
+									Place pst = flowMap.get(s);
 
-									Place ps = flowMap.get(so);
-									Transition t = net
-											.addTransition(g.getLabel()
-													+ "_join", this.subNet);
-									t.setInvisible(true);
-									net.addArc(t, ps, 1, this.subNet);
-									for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
-											.getGraph().getInEdges(g)) {
+									for (Transition t : tranMap.values()) {
 
-										Place pst = flowMap.get(s);
 										net.addArc(pst, t, 1, this.subNet);
 
 									}
-
 								}
-							}
-						} else {
-							// gateway event-based
-							if (g.getGatewayType().equals(
-									GatewayType.EVENTBASED)) {
-								// Exclusive event gateway
-								if (g.getGraph().getOutEdges(g).size() > 1
-										&& g.getGraph().getInEdges(g).size() == 1) {
-									BPMNEdge<? extends BPMNNode, ? extends BPMNNode> so = g
-											.getGraph().getInEdges(g)
-											.iterator().next();
+							} else {
+								// gateway merge
+								if (g.getGraph().getOutEdges(g).size() == 1
+										&& g.getGraph().getInEdges(g).size() > 1) {
 
-									Place ps = flowMap.get(so);
-									int i = 0;
-									for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
+									Place ps = null;
+									for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> out : g
 											.getGraph().getOutEdges(g)) {
+										ps = flowMap.get(out);
+									}
+									i = 0;
+									for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
+											.getGraph().getInEdges(g)) {
 
 										Place pst = flowMap.get(s);
 
@@ -598,33 +496,164 @@ if(node instanceof Event ){
 												g.getLabel() + "_" + i++,
 												this.subNet);
 										t.setInvisible(true);
+										net.addArc(pst, t, 1, this.subNet);
+
+										net.addArc(t, ps, this.subNet);
+
+									}
+								} else {
+									if (g.getGraph().getOutEdges(g).size() > 1
+											&& g.getGraph().getInEdges(g).size() > 1) {
+										i = 0;
+										Place placecentral = net.addPlace(
+												g.getLabel(), this.subNet);
+										for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
+												.getGraph().getOutEdges(g)) {
+											String source = s.getSource()
+													.getLabel();
+											String target = s.getTarget()
+													.getLabel();
+
+											Transition t = net.addTransition(
+													g.getLabel() + "_" + i++,
+													this.subNet);
+											t.setInvisible(true);
+											tranMap.put(target + source, t);
+
+											Place pst = flowMap.get(s);
+
+											net.addArc(t, pst, 1, this.subNet);
+
+											net.addArc(placecentral, t, this.subNet);
+										}
+										//i = 0;
+										for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
+												.getGraph().getInEdges(g)) {
+											String source = s.getSource()
+													.getLabel();
+											String target = s.getTarget()
+													.getLabel();
+
+											Place pst = flowMap.get(s);
+
+											Transition t = net.addTransition(
+													g.getLabel() + "_" + i++,
+													this.subNet);
+											t.setInvisible(true);
+											net.addArc(pst, t, 1, this.subNet);
+
+											net.addArc(t, placecentral, this.subNet);
+											/*
+											 * Place pst = flowMap.get(s);
+											 * 
+											 * for (Transition t : tranMap.values())
+											 * {
+											 * 
+											 * net.addArc(pst, t, 1, this.subNet);
+											 * 
+											 * }
+											 */
+										}
+									}
+
+								}
+							}
+
+						} else {
+							if (g.getGatewayType().equals(GatewayType.PARALLEL)) {
+								// gateway parallel fork
+								if (g.getGraph().getOutEdges(g).size() > 1
+										&& g.getGraph().getInEdges(g).size() == 1) {
+									BPMNEdge<? extends BPMNNode, ? extends BPMNNode> so = g
+											.getGraph().getInEdges(g).iterator()
+											.next();
+
+									Place ps = flowMap.get(so);
+									Transition t = net.addTransition(g.getLabel()
+											+ "_fork", this.subNet);
+									t.setInvisible(true);
+									net.addArc(ps, t, 1, this.subNet);
+									for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
+											.getGraph().getOutEdges(g)) {
+
+										Place pst = flowMap.get(s);
 										net.addArc(t, pst, 1, this.subNet);
 
-										net.addArc(ps, t, this.subNet);
+									}
+
+								} else {
+									// gateway parallel Join
+									if (g.getGraph().getOutEdges(g).size() == 1
+											&& g.getGraph().getInEdges(g).size() > 1) {
+										BPMNEdge<? extends BPMNNode, ? extends BPMNNode> so = g
+												.getGraph().getOutEdges(g)
+												.iterator().next();
+
+										Place ps = flowMap.get(so);
+										Transition t = net
+												.addTransition(g.getLabel()
+														+ "_join", this.subNet);
+										t.setInvisible(true);
+										net.addArc(t, ps, 1, this.subNet);
+										for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
+												.getGraph().getInEdges(g)) {
+
+											Place pst = flowMap.get(s);
+											net.addArc(pst, t, 1, this.subNet);
+
+										}
+
+									}
+								}
+							} else {
+								// gateway event-based
+								if (g.getGatewayType().equals(
+										GatewayType.EVENTBASED)) {
+									// Exclusive event gateway
+									if (g.getGraph().getOutEdges(g).size() > 1
+											&& g.getGraph().getInEdges(g).size() == 1) {
+										BPMNEdge<? extends BPMNNode, ? extends BPMNNode> so = g
+												.getGraph().getInEdges(g)
+												.iterator().next();
+
+										Place ps = flowMap.get(so);
+										int i = 0;
+										for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : g
+												.getGraph().getOutEdges(g)) {
+
+											Place pst = flowMap.get(s);
+
+											Transition t = net.addTransition(
+													g.getLabel() + "_" + i++,
+													this.subNet);
+											t.setInvisible(true);
+											net.addArc(t, pst, 1, this.subNet);
+
+											net.addArc(ps, t, this.subNet);
+
+										}
 
 									}
 
 								}
-
 							}
 						}
 					}
 				}
 			}
-}
 		}
 
 	}
-	
+
 	private PetrinetGraph transSubProcess(SubProcess sub,Marking marking, LinkedHashMap<Flow, Place> flowMapsub){
 		PetrinetGraph netsub = PetrinetFactory.newPetrinet(sub.getLabel());
 		HashSet<ContainableDirectedGraphElement> children = (HashSet<ContainableDirectedGraphElement>) sub
 				.getChildren();
-		
-		
 
-		
-	
+
+
+
+
 		List<BPMNNode> listnode = new ArrayList<BPMNNode>();
 		List<Flow> listFlow = new ArrayList<Flow>();
 		for (ContainableDirectedGraphElement containableDirectedGraphElement : children) {
@@ -633,14 +662,14 @@ if(node instanceof Event ){
 				listnode.add((BPMNNode) containableDirectedGraphElement);
 				System.out.println(""
 						+ ((BPMNNode) containableDirectedGraphElement)
-								.getLabel());
+						.getLabel());
 			} else {
 				if (containableDirectedGraphElement instanceof Flow) {
 
 					listFlow.add((Flow) containableDirectedGraphElement);
 					System.out.println(""
 							+ ((Flow) containableDirectedGraphElement)
-									.getEdgeID());
+							.getEdgeID());
 				}
 			}
 		}
@@ -648,10 +677,10 @@ if(node instanceof Event ){
 		transFlows(listFlow, flowMapsub, netsub);
 
 		transNodes(listnode, flowMapsub, netsub,marking);
-		 
+
 		return netsub;
 
-		
+
 	}
 
 	private PetrinetGraph transSubProcess(SubProcess sub,
@@ -668,14 +697,14 @@ if(node instanceof Event ){
 				listnode.add((BPMNNode) containableDirectedGraphElement);
 				System.out.println(""
 						+ ((BPMNNode) containableDirectedGraphElement)
-								.getLabel());
+						.getLabel());
 			} else {
 				if (containableDirectedGraphElement instanceof Flow) {
 
 					listFlow.add((Flow) containableDirectedGraphElement);
 					System.out.println(""
 							+ ((Flow) containableDirectedGraphElement)
-									.getEdgeID());
+							.getEdgeID());
 				}
 			}
 		}
@@ -700,14 +729,14 @@ if(node instanceof Event ){
 					listnode.add((BPMNNode) containableDirectedGraphElement);
 					System.out.println(""
 							+ ((BPMNNode) containableDirectedGraphElement)
-									.getLabel());
+							.getLabel());
 				} else {
 					if (containableDirectedGraphElement instanceof Flow) {
 
 						listFlow.add((Flow) containableDirectedGraphElement);
 						System.out.println(""
 								+ ((Flow) containableDirectedGraphElement)
-										.getEdgeID());
+								.getEdgeID());
 					}
 				}
 			}
@@ -730,7 +759,7 @@ if(node instanceof Event ){
 
 			//net.addArc(pst_central, tend, 1, this.subNet);
 			//net.addArc(t, pst_central, 1, this.subNet);
-			
+
 			for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : sub
 					.getGraph().getInEdges(sub)) {
 				if (s instanceof Flow) {
@@ -839,7 +868,7 @@ if(node instanceof Event ){
 					}
 				}
 			}
-			*/
+			 */
 		}
 	}
 
@@ -857,23 +886,23 @@ if(node instanceof Event ){
 					listnode.add((BPMNNode) containableDirectedGraphElement);
 					System.out.println(""
 							+ ((BPMNNode) containableDirectedGraphElement)
-									.getLabel());
+							.getLabel());
 				} else {
 					if (containableDirectedGraphElement instanceof Flow) {
 
 						listFlow.add((Flow) containableDirectedGraphElement);
 						System.out.println(""
 								+ ((Flow) containableDirectedGraphElement)
-										.getEdgeID());
+								.getEdgeID());
 					}
 				}
 			}
 
-			
+
 
 			traslateFlow(bpmn, flowMap, net, sub);
 
-			translateTask(bpmn, flowMap, net, sub);
+			translateTask(bpmn, flowMap, net, sub,0);
 
 			translateGateway(bpmn, flowMap, net, sub);
 
@@ -957,42 +986,66 @@ if(node instanceof Event ){
 					}
 				}
 			}
-			
+
 		}
 	}
 	private void translateTask(BPMNDiagram bpmn,
 			LinkedHashMap<Flow, Place> flowMap, PetrinetGraph net,
-			ContainingDirectedGraphNode parent) {
+			ContainingDirectedGraphNode parent,int typelifecycle) {
 
 		for (Activity c : bpmn.getActivities()) {
 			if (parent == c.getParentSubProcess()) {
 				String id = c.getLabel();
+				if(typelifecycle==0){
+					Transition t = net.addTransition(id + "+start", this.subNet);
+					Transition t1 = net.addTransition(id + "+complete", this.subNet);
 
-				Transition t = net.addTransition(id + "+start", this.subNet);
-				Place p = net.addPlace(id, this.subNet);
-				net.addArc(t, p, 1, this.subNet);
-				Transition t1 = net
-						.addTransition(id + "+complete", this.subNet);
-				net.addArc(p, t1, 1, this.subNet);
+					Place p = net.addPlace(id, this.subNet);
+					net.addArc(t, p, 1, this.subNet);
 
-				for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : c
-						.getGraph().getInEdges(c)) {
-					if (s instanceof Flow) {
+					net.addArc(p, t1, 1, this.subNet);
 
-						Place pst = flowMap.get(s);
+					for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : c
+							.getGraph().getInEdges(c)) {
+						if (s instanceof Flow) {
 
-						net.addArc(pst, t, 1, this.subNet);
+							Place pst = flowMap.get(s);
+
+							net.addArc(pst, t, 1, this.subNet);
+						}
+
 					}
+					for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : c
+							.getGraph().getOutEdges(c)) {
+						if (s instanceof Flow) {
 
-				}
-				for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : c
-						.getGraph().getOutEdges(c)) {
-					if (s instanceof Flow) {
+							Place pst = flowMap.get(s);
 
-						Place pst = flowMap.get(s);
-
-						net.addArc(t1, pst, 1, this.subNet);
+							net.addArc(t1, pst, 1, this.subNet);
+						}
 					}
+				}else{
+					Transition t = net.addTransition(id + "+complete", this.subNet);
+					for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : c
+							.getGraph().getInEdges(c)) {
+						if (s instanceof Flow) {
+
+							Place pst = flowMap.get(s);
+
+							net.addArc(pst, t, 1, this.subNet);
+						}
+
+					}
+					for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : c
+							.getGraph().getOutEdges(c)) {
+						if (s instanceof Flow) {
+
+							Place pst = flowMap.get(s);
+
+							net.addArc(t, pst, 1, this.subNet);
+						}
+					}
+					
 				}
 
 			}
@@ -1217,7 +1270,7 @@ if(node instanceof Event ){
 					if (sub == null) {
 						marking.add(p, 1);
 					}else{
-						
+
 						//marking.add(p, 190);
 					}
 					for (BPMNEdge<? extends BPMNNode, ? extends BPMNNode> s : e
@@ -1308,7 +1361,7 @@ if(node instanceof Event ){
 
 	private void layOutFMJGraph(
 			DirectedGraph<? extends AbstractDirectedGraphNode, ? extends AbstractDirectedGraphEdge<?, ?>> graph,
-			ProMJGraph jgraph, JGraphFacade facade) {
+					ProMJGraph jgraph, JGraphFacade facade) {
 		JGraphHierarchicalLayout layout = new JGraphHierarchicalLayout();
 		layout.setDeterministic(false);
 		layout.setCompactLayout(false);
@@ -1515,7 +1568,7 @@ if(node instanceof Event ){
 						if ((isend.getEventType() == EventType.START && isend
 								.getEventTrigger() == EventTrigger.NONE)
 								|| (isend.getEventType() == EventType.INTERMEDIATE && isend
-										.getEventTrigger() == EventTrigger.ERROR)) {
+								.getEventTrigger() == EventTrigger.ERROR)) {
 							listnodeatttostart.add(a);
 							break;
 						}
